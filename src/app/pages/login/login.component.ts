@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LogoComponent } from '../../components/logo/logo.component';
-import { LoginFormComponent } from '../../components/login-form/login-form.component';
+import { LoginFormComponent } from '../../components/login/login-form/login-form.component';
 
 @Component({
   selector: 'app-login',

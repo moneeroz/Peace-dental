@@ -17,9 +17,7 @@ export class AuthService {
   private baseUrl: string = 'http://localhost:3030/api/auth';
   private http = inject(HttpClient);
 
-  getCurrentUser(): Signal<Iuser | null | undefined> {
-    return this.currentUser;
-  }
+  readonly userSignal = this.currentUser.asReadonly();
 
   setCurrentUser(user: Iuser | null): void {
     this.currentUser.set(user);

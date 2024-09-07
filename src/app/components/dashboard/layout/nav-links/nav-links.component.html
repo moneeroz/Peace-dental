@@ -1,0 +1,8 @@
+<div>
+  @for (link of links; track link.name) {
+  <a [routerLink]="link.href" routerLinkActive="active">
+    <ng-icon [name]="link.icon" style="width: 1.5rem; height: 1.5rem" />
+    <p>{{ link.name }}</p>
+  </a>
+  }
+</div>
