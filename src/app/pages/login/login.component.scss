@@ -1,0 +1,36 @@
+$blue-400: #60a5fa;
+$blue-500: #3b82f6;
+$gray-50: #f9fafb;
+$gray-800: #1f2937;
+$white: #ffffff;
+
+main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 0.625rem;
+  padding: 1rem;
+}
+
+app-logo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-end;
+  height: 5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: $blue-500;
+}
+
+@media (min-width: 768px) {
+  main {
+    margin-top: 8rem;
+  }
+
+  app-logo {
+    height: 9rem;
+  }
+}
