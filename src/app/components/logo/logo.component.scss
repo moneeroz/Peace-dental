@@ -1,0 +1,19 @@
+$white: #ffffff;
+
+div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  color: $white;
+}
+
+p {
+  font-size: 2rem;
+}
+
+ng-icon {
+  width: 3rem;
+  height: 3rem;
+  transform: rotate(15deg);
+}

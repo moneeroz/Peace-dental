@@ -1,0 +1,50 @@
+<form [formGroup]="loginForm">
+  <h1>Please log in to continue</h1>
+  <div>
+    <label> Email </label>
+    <div>
+      <input
+        type="email"
+        placeholder="Enter your email address"
+        formControlName="email"
+      />
+      <ng-icon name="heroAtSymbol" style="width: 18px; height: 18px" />
+    </div>
+    @if (loginForm.controls.email.invalid && (loginForm.controls.email.touched
+    || loginForm.controls.email.dirty) ) { @if
+    (loginForm.controls.email.errors?.["required"]) {
+    <small>*Email is required</small>
+    } }
+  </div>
+  <div>
+    <label> Password </label>
+    <div>
+      <input
+        type="password"
+        placeholder="Enter password"
+        formControlName="password"
+      />
+      <ng-icon name="heroKey" style="width: 18px; height: 18px" />
+    </div>
+    @if (loginForm.controls.password.invalid &&
+    (loginForm.controls.password.touched || loginForm.controls.password.dirty) )
+    { @if(loginForm.controls.password.errors?.["required"]) {
+    <small>*Password is required</small>
+    } @if(loginForm.controls.password.errors?.["minlength"]) {
+    <small>*Password must be at least 6 charecters long</small>
+    } }
+  </div>
+  <button
+    type="submit"
+    class="mt-4 w-full"
+    (click)="onSubmit()"
+    [disabled]="loginForm.invalid"
+  >
+    Log in
+    <ng-icon
+      name="heroArrowRight"
+      class="ml-auto text-gray-500 pt-[5px]"
+      style="width: 1.25rem; height: 1.25rem"
+    />
+  </button>
+</form>
