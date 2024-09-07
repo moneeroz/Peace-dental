@@ -11,7 +11,7 @@ import {
   heroKey,
   heroArrowRight,
 } from '@ng-icons/heroicons/outline';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -35,12 +35,16 @@ export class LoginFormComponent {
   });
 
   onSubmit() {
-    this.authService.login(this.loginForm.getRawValue()).subscribe((user) => {
-      this.authService.setCurrentUser(user);
-      localStorage.setItem('token', user.token);
-      localStorage.setItem('refresh_token', user.refreshToken);
-      this.router.navigateByUrl('/overview');
-      console.log(user);
+    this.authService.login(this.loginForm.getRawValue()).subscribe({
+      next: (user) => {
+        this.authService.setCurrentUser(user);
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('refresh_token', user.refreshToken);
+        this.router.navigateByUrl('/overview');
+      },
+      error: (err) => {
+        throw new Error(err);
+      },
     });
   }
 }
