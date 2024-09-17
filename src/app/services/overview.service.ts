@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, Signal } from '@angular/core';
 import { ICardData } from '../interfaces/icard-data';
-import { ILatestAppointments } from '../interfaces/ilatest-appointments';
-import { ILatestInvoices } from '../interfaces/ilatest-invoices';
+import { ILatestAppointment } from '../interfaces/ilatest-appointment';
+import { ILatestInvoice } from '../interfaces/ilatest-invoice';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -15,12 +15,12 @@ export class OverviewService {
   private cardData$ = this.http.get<ICardData>(`${this.baseUrl}/card-data`);
   private readonly cardData = toSignal(this.cardData$);
 
-  private latestAppointments$ = this.http.get<ILatestAppointments>(
+  private latestAppointments$ = this.http.get<ILatestAppointment[]>(
     `${this.baseUrl}/latest-appointments`,
   );
   private readonly latestAppointments = toSignal(this.latestAppointments$);
 
-  private latestInvoices$ = this.http.get<ILatestInvoices>(
+  private latestInvoices$ = this.http.get<ILatestInvoice[]>(
     `${this.baseUrl}/latest-invoices`,
   );
   private readonly latestInvoices = toSignal(this.latestInvoices$);
@@ -29,11 +29,11 @@ export class OverviewService {
     return this.cardData;
   }
 
-  getLatestAppointments(): Signal<ILatestAppointments | undefined> {
+  getLatestAppointments(): Signal<ILatestAppointment[] | undefined> {
     return this.latestAppointments;
   }
 
-  getLatestInvoices(): Signal<ILatestInvoices | undefined> {
+  getLatestInvoices(): Signal<ILatestInvoice[] | undefined> {
     return this.latestInvoices;
   }
 }
