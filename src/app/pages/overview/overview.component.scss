@@ -1,0 +1,40 @@
+h1 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+app-card-wrapper {
+  display: grid;
+  gap: 1.5rem;
+}
+
+div {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+// small screen and up
+@media (min-width: 640px) {
+  app-card-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// meduim screen and up
+@media (min-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+// large screen and up
+@media (min-width: 1024px) {
+  app-card-wrapper {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
