@@ -1,0 +1,24 @@
+<app-card
+  title="Today's Appointments"
+  [value]="data()?.appointmentsToday"
+  icon="heroCalendarDays"
+  type="count"
+/>
+<app-card
+  title="Tomorrow's Appointments"
+  [value]="data()?.appointmentsTomorrow"
+  icon="heroCalendar"
+  type="count"
+/>
+<app-card
+  title="Paid"
+  [value]="data()?.totalPaidInvoices"
+  icon="heroBanknotes"
+  type="currency"
+/>
+<app-card
+  title="Pending"
+  [value]="data()?.totalPendingInvoices"
+  icon="heroClock"
+  type="currency"
+/>
