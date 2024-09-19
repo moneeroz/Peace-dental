@@ -1,0 +1,87 @@
+<div class="mobile">
+  @for (patient of patients(); track patient.id) {
+  <div class="card">
+    <div class="main">
+      <div class="patient">
+        <a [routerLink]="patient.id" class="name">
+          {{ patient.name }}
+        </a>
+        <p class="phone">{{ patient.phone }}</p>
+      </div>
+
+      <div class="patient-actions">
+        <a routerLink="{{ patient.id }}/edit" class="action-btn">
+          <span class="sr-only">Update</span>
+          <ng-icon name="heroPencil" style="width: 1.25rem" />
+        </a>
+        <button (click)="onDelete(patient.id)" class="action-btn">
+          <span class="sr-only">Delete</span>
+          <ng-icon name="heroTrash" style="width: 1.25rem" />
+        </button>
+      </div>
+    </div>
+    <div class="total">
+      <p>{{ patient.total_invoices }} invoices</p>
+    </div>
+
+    <div class="invoice">
+      <div>
+        <p>Pending</p>
+        <p class="amount">{{ patient.total_pending | currency }}</p>
+      </div>
+      <div>
+        <p>Paid</p>
+        <p class="amount">{{ patient.total_paid | currency }}</p>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Total Invoices</th>
+        <th>Pending</th>
+        <th>Paid</th>
+        <th><span class="sr-only">Edit</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (patient of patients(); track patient.id) {
+      <tr>
+        <td>
+          <a routerLink="{{ patient.id }}">
+            {{ patient.name }}
+          </a>
+        </td>
+        <td>
+          {{ patient.phone }}
+        </td>
+        <td>{{ patient.total_invoices }}</td>
+        <td>
+          {{ patient.total_paid | currency }}
+        </td>
+        <td>
+          {{ patient.total_pending | currency }}
+        </td>
+        <td>
+          <div class="patient-actions">
+            <a routerLink="{{ patient.id }}/edit" class="action-btn">
+              <span class="sr-only">Update</span>
+              <ng-icon name="heroPencil" style="width: 1.25rem" />
+            </a>
+            <button (click)="onDelete(patient.id)" class="action-btn">
+              <span class="sr-only">Delete</span>
+              <ng-icon name="heroTrash" style="width: 1.25rem" />
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
