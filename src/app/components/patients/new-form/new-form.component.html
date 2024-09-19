@@ -1,0 +1,28 @@
+<form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+  <!-- Patient Name  -->
+  <label> Patient Name </label>
+  <div>
+    <input
+      formControlName="name"
+      type="text"
+      [placeholder]="'Please enter the full name'"
+    />
+    <ng-icon name="heroUser" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Patient Phone  -->
+  <label> Patient Phone </label>
+  <div>
+    <input
+      formControlName="phone"
+      type="text"
+      [placeholder]="'please enter the phone number'"
+    />
+    <ng-icon name="heroPhone" style="width: 18px; height: 18px" />
+  </div>
+
+  <div class="actions">
+    <a routerLink="/patients">Cancel</a>
+    <Button type="submit">Create</Button>
+  </div>
+</form>
