@@ -1,0 +1,28 @@
+<main>
+  <h1>Patients</h1>
+  <div class="actions">
+    <app-search
+      (searchTerm)="filterPatients($event)"
+      [placeHolder]="placeHolder"
+    />
+    <app-add-button text="Add Patient" link="/patients/new" />
+  </div>
+  <app-table
+    [patients]="patients()"
+    (onDeletePatient)="deletePatient($event)"
+  />
+
+  <div class="pagination">
+    @defer{
+
+    <app-pagination
+      (pageNumber)="navigateToPage($event)"
+      [totalPages]="totalPages()"
+    />
+    } @placeholder (minimum 300ms) {
+    <div>...</div>
+    } @loading {
+    <div>loading...</div>
+    }
+  </div>
+</main>

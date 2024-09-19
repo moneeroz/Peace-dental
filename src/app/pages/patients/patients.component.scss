@@ -1,0 +1,33 @@
+h1 {
+  font-size: x-large;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+app-search {
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  // gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: xx-large;
+  }
+
+  .actions {
+    margin-top: 2rem;
+  }
+}
