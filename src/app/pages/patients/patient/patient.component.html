@@ -1,0 +1,5 @@
+@if(patientInvoices().length > 0) {
+<h1>{{ patientInvoices()[0].name }}</h1>
+}
+
+<app-patient-table [invoices]="patientInvoices()" />
