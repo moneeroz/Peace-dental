@@ -33,11 +33,7 @@ a {
 }
 
 app-nav-links {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: space-between;
-  margin-left: 0.5rem;
+  width: 100%;
 }
 
 .divider {
@@ -74,6 +70,13 @@ button:hover {
   color: $blue-600;
 }
 
+.links {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
 // meduim screen and up
 @media (min-width: 768px) {
   .main {
@@ -87,13 +90,11 @@ button:hover {
 
   app-nav-links {
     flex-direction: column;
-    margin-left: 0;
   }
 
   .divider {
     display: block;
     height: 100%;
-    margin-block: 0.5rem;
   }
 
   button {
@@ -104,5 +105,9 @@ button:hover {
     span {
       display: block;
     }
+  }
+
+  .links {
+    flex-direction: column;
   }
 }
