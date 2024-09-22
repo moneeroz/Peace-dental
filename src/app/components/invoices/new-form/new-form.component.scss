@@ -1,0 +1,219 @@
+$blue-400: #60a5fa;
+$blue-500: #3b82f6;
+$blue-600: #2563eb;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-800: #1f2937;
+$gray-900: #111827;
+$gray-900: #111827;
+$green-500: #22c55e;
+$white: #ffffff;
+
+form {
+  padding: 1rem;
+  background: $gray-50;
+  border-radius: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:first-of-type {
+    margin-top: 1rem;
+  }
+}
+
+.input {
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid $gray-200;
+  padding-block: 0.5rem;
+  padding-left: 2.5rem;
+  outline-width: 2px;
+  // background: $white;
+
+  &:focus {
+    border-color: $blue-600;
+    outline: none;
+  }
+
+  &:first-of-type {
+    margin-bottom: 0.5rem;
+  }
+}
+
+select.input {
+  background: $white;
+}
+
+div {
+  position: relative;
+}
+
+div > ng-icon {
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: $gray-500;
+}
+
+fieldset {
+  border: none;
+}
+
+section {
+  border: 1px solid $gray-200;
+  border-radius: 0.375rem;
+  background: $white;
+  padding-inline: 14px;
+  padding-block: 0.5rem;
+  padding-top: 0;
+}
+
+.status {
+  display: flex;
+  gap: 1rem;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.common {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding-inline: 0.75rem;
+  padding-block: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-input {
+  margin-top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid $gray-300;
+  background: $gray-100;
+  color: $gray-600;
+}
+
+.pending-label {
+  background: $gray-100;
+  color: $gray-600;
+}
+
+.paid-label {
+  background: $green-500;
+  color: $white;
+}
+
+.actions {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  & a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding-inline: 1rem;
+    background: $gray-100;
+    color: $gray-600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+    &:hover {
+      background: $gray-200;
+    }
+  }
+
+  button {
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background: $blue-500;
+    padding-inline: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $white;
+
+    transition-property: color, background-color, border-color,
+      text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  button:hover {
+    background: $blue-400;
+  }
+
+  button:focus {
+    outline-offset: 0.2rem;
+  }
+
+  button:disabled {
+    background: $blue-400;
+  }
+}
+// .ng-select .ng-placeholder {
+//   display: block;
+// }
+// //
+// .ng-select.input .ng-select-container {
+//   border: none;
+// }
+
+// ng-select.custom > * {
+//   border: 1px solid $gray-200;
+//   border-radius: 0.375rem;
+//   padding-left: 2.5rem;
+//   margin-left: 2.5rem;
+//   background: $white;
+// }
+
+@media (min-width: 768px) {
+  form {
+    padding: 1.5rem;
+  }
+}
+
+.ng-select.custom {
+  .ng-select-container {
+    display: flex; /* Use flexbox for the container */
+    align-items: center; /* Center items vertically */
+  }
+
+  .ng-value-container {
+    display: flex; /* Use flexbox for the value container */
+    align-items: center; /* Center items vertically */
+    padding-left: 2.5rem; /* Add padding to prevent overlap with the icon */
+  }
+
+  .ng-icon {
+    margin-right: 0.75rem; /* Space between the icon and the selected text */
+  }
+}

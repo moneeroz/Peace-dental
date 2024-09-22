@@ -1,0 +1,86 @@
+<div class="mobile">
+  @for (invoice of invoices(); track invoice.id) {
+  <div class="card">
+    <div class="invoice">
+      <div class="name">
+        <p>{{ invoice.name }}</p>
+        <p class="reason">{{ invoice.reason }}</p>
+      </div>
+
+      <div>
+        <app-status [status]="invoice.status" />
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="bold">D. {{ invoice.doctor }}</div>
+
+      <div>
+        <p class="bold">{{ invoice.amount | currency }}</p>
+        <p>{{ invoice.date | date }}</p>
+      </div>
+
+      <div class="invoice-actions">
+        <a routerLink="{{ invoice.id }}/edit" class="action-btn">
+          <span class="sr-only">Update</span>
+          <ng-icon name="heroPencil" style="width: 1.25rem" />
+        </a>
+        <button (click)="onDelete(invoice.id)" class="action-btn">
+          <span class="sr-only">Delete</span>
+          <ng-icon name="heroTrash" style="width: 1.25rem" />
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Reason</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Doctor</th>
+        <th><span class="sr-only">Edit</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (invoice of invoices(); track invoice.id) {
+      <tr>
+        <td>
+          {{ invoice.name }}
+        </td>
+        <td>
+          {{ invoice.reason }}
+        </td>
+        <td>{{ invoice.amount | currency }}</td>
+        <td>
+          {{ invoice.date | date }}
+        </td>
+        <td>
+          <app-status [status]="invoice.status" />
+        </td>
+        <td>
+          {{ invoice.doctor }}
+        </td>
+        <td>
+          <div class="invoice-actions">
+            <a routerLink="{{ invoice.id }}/edit" class="action-btn">
+              <span class="sr-only">Update</span>
+              <ng-icon name="heroPencil" style="width: 1.25rem" />
+            </a>
+            <button (click)="onDelete(invoice.id)" class="action-btn">
+              <span class="sr-only">Delete</span>
+              <ng-icon name="heroTrash" style="width: 1.25rem" />
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
