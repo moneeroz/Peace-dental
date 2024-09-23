@@ -1,8 +1,13 @@
 <div>
-  @for (link of links; track link.name) {
+  @for (link of userLinks; track link.name) {
   <a [routerLink]="link.href" routerLinkActive="active">
     <ng-icon [name]="link.icon" style="width: 1.5rem; height: 1.5rem" />
     <p>{{ link.name }}</p>
+  </a>
+  } @if(role === 'admin') {
+  <a [routerLink]="adminLink.href" routerLinkActive="active">
+    <ng-icon [name]="adminLink.icon" style="width: 1.5rem; height: 1.5rem" />
+    <p>{{ adminLink.name }}</p>
   </a>
   }
 </div>

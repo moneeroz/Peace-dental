@@ -1,12 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  OnChanges,
-  OnDestroy,
-  output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, inject, input, OnDestroy, output } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, Signal, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Iuser } from '../interfaces/iuser';
-import { Observable } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { map, Observable } from 'rxjs';
 
 export interface loginData {
   email: string;
@@ -24,13 +23,44 @@ export class AuthService {
     this.currentUser.set(user);
   }
 
+  private loginStatus = signal<boolean>(false);
+  readonly isLoggedIn = this.loginStatus.asReadonly();
+
+  setLogin(status: boolean): void {
+    this.loginStatus.set(status);
+  }
+
   // Login
   login(data: loginData): Observable<Iuser> {
-    return this.http.post<Iuser>(`${this.baseUrl}/login`, data);
+    return this.http.post<Iuser>(`${this.baseUrl}/login`, data).pipe(
+      map((user) => {
+        this.setCurrentUser(user);
+        this.setLogin(true);
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('refresh_token', user.refreshToken);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('role', user.role);
+        return user;
+      }),
+    );
   }
 
   // Token verification
   verifyToken$(refreshToken: string): Observable<Iuser> {
     return this.http.post<Iuser>(`${this.baseUrl}/token`, { refreshToken });
+  }
+
+  // Logout
+  logout(id: string) {
+    return this.http.get(`${this.baseUrl}/logout/${id}`).pipe(
+      map(() => {
+        this.setCurrentUser(null);
+        this.setLogin(false);
+        localStorage.removeItem('token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('role');
+      }),
+    );
   }
 }

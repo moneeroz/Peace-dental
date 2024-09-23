@@ -5,6 +5,7 @@ import { Ipatient } from '../../interfaces/ipatient';
 import { SearchComponent } from '../../components/common/search/search.component';
 import { AddButtonComponent } from '../../components/common/add-button/add-button.component';
 import { PaginationComponent } from '../../components/common/pagination/pagination.component';
+import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-patients',
@@ -19,10 +20,11 @@ import { PaginationComponent } from '../../components/common/pagination/paginati
   styleUrl: './patients.component.scss',
 })
 export class PatientsComponent implements OnInit {
+  paginationService = inject(PaginationService);
   private readonly patientService = inject(PatientService);
   readonly patients = signal<Ipatient[]>([]);
+
   query = signal<string>('');
-  totalPages = signal<number>(1);
   placeHolder = 'Search for patients...';
 
   ngOnInit() {
@@ -34,12 +36,14 @@ export class PatientsComponent implements OnInit {
     query = query?.trim() || '';
     this.query.set(query);
     this.loadPatients(this.query());
+    this.loadTotalPages(this.query());
   }
 
   loadPatients(query: string | null = null, page: number = 1) {
     query = query?.trim() || '';
     this.patientService.getPatients({ query, page }).subscribe({
       next: (patients) => {
+        this.paginationService.setCurrentPage(page);
         this.patients.set(patients);
       },
       error: (err) => {
@@ -52,7 +56,7 @@ export class PatientsComponent implements OnInit {
     query = query?.trim() || '';
     this.patientService.getTotalPages(query).subscribe({
       next: (totalPages) => {
-        this.totalPages.set(totalPages);
+        this.paginationService.setTotalPages(totalPages);
       },
       error: (err) => {
         console.log(err);

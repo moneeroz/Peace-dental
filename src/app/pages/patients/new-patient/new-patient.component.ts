@@ -3,17 +3,31 @@ import { NewFormComponent } from '../../../components/patients/new-form/new-form
 import { IpatientInfo } from '../../../interfaces/ipatient-info';
 import { Router } from '@angular/router';
 import { PatientService } from '../../../services/patient.service';
+import {
+  Breadcrumb,
+  BreadcrumbsComponent,
+} from '../../../components/common/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-new-patient',
   standalone: true,
-  imports: [NewFormComponent],
+  imports: [NewFormComponent, BreadcrumbsComponent],
   templateUrl: './new-patient.component.html',
   styleUrl: './new-patient.component.scss',
 })
 export class NewPatientComponent {
   router = inject(Router);
   patientService = inject(PatientService);
+
+  breadcrumbs: Breadcrumb[] = [
+    { label: 'Patients', url: '/patients' },
+    {
+      label: 'New Patient',
+      url: `/patients/new`,
+      active: true,
+    },
+  ];
+
   onSubmit(patient: IpatientInfo) {
     this.patientService.addPatient(patient).subscribe({
       next: () => this.router.navigateByUrl('/patients'),

@@ -5,6 +5,7 @@ import { AppointmentService } from '../../services/appointment.service';
 import { SearchComponent } from '../../components/common/search/search.component';
 import { AddButtonComponent } from '../../components/common/add-button/add-button.component';
 import { PaginationComponent } from '../../components/common/pagination/pagination.component';
+import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-appointments',
@@ -19,11 +20,12 @@ import { PaginationComponent } from '../../components/common/pagination/paginati
   styleUrl: './appointments.component.scss',
 })
 export class AppointmentsComponent implements OnInit {
+  paginationService = inject(PaginationService);
   readonly appointments = signal<Iappointment[]>([]);
   private readonly appointmentService = inject(AppointmentService);
 
   query = signal<string>('');
-  totalPages = signal<number>(1);
+
   placeHolder = 'Search for Appointments...';
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class AppointmentsComponent implements OnInit {
     query = query?.trim() || '';
     this.appointmentService.getAppointments({ query, page }).subscribe({
       next: (appointments) => {
+        this.paginationService.setCurrentPage(page);
         this.appointments.set(appointments);
       },
       error: (err) => {
@@ -47,7 +50,7 @@ export class AppointmentsComponent implements OnInit {
     query = query?.trim() || '';
     this.appointmentService.getTotalPages(query).subscribe({
       next: (totalPages) => {
-        this.totalPages.set(totalPages);
+        this.paginationService.setTotalPages(totalPages);
       },
       error: (err) => {
         console.log(err);
@@ -70,6 +73,7 @@ export class AppointmentsComponent implements OnInit {
     query = query?.trim() || '';
     this.query.set(query);
     this.loadAppointments(this.query());
+    this.loadTotalPages(this.query());
   }
 
   // pagination
