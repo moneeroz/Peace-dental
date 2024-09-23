@@ -1,0 +1,55 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <!-- Name  -->
+  <label for="patientId"> Patient </label>
+  <div>
+    <ng-select
+      [items]="patients()"
+      bindLabel="name"
+      bindValue="id"
+      searchable="true"
+      placeholder="Select a patient"
+      formControlName="patientId"
+      class="new-form"
+    />
+    <ng-icon name="heroUserPlus" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Doctor  -->
+  <label for="doctorId"> Doctor </label>
+  <div>
+    <ng-select
+      [items]="doctors()"
+      bindLabel="name"
+      bindValue="id"
+      searchable="true"
+      placeholder="Select a doctor"
+      formControlName="doctorId"
+      class="new-form"
+    />
+
+    <ng-icon name="heroUser" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Reason  -->
+  <label for="reason"> Reason </label>
+  <div>
+    <input class="input" formControlName="reason" type="text" id="reason" />
+    <ng-icon name="heroHeart" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Date  -->
+  <label for="date"> Appointment Date </label>
+  <div>
+    <!-- <input class="input" formControlName="appointmentDate" type="datetime" id="date" /> -->
+    <ngx-flatpickr-wrapper
+      [config]="options"
+      formControlName="appointmentDate"
+    />
+    <ng-icon name="heroCalendar" style="width: 18px; height: 18px" />
+  </div>
+
+  <div class="actions">
+    <a routerLink="/appointments">Cancel</a>
+    <Button type="submit">Create</Button>
+  </div>
+</form>

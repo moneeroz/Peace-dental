@@ -1,0 +1,30 @@
+<main>
+  <h1>Appointments</h1>
+
+  <div class="actions">
+    <app-search
+      (searchTerm)="filterAppointments($event)"
+      [placeHolder]="placeHolder"
+    />
+    <app-add-button text="Add Appointment" link="/appointments/new" />
+  </div>
+
+  <app-table
+    [appointments]="appointments()"
+    (onDeleteAppointment)="deleteAppointment($event)"
+  />
+
+  <div class="pagination">
+    @defer{
+
+    <app-pagination
+      (pageNumber)="navigateToPage($event)"
+      [totalPages]="totalPages()"
+    />
+    } @placeholder (minimum 300ms) {
+    <div>...</div>
+    } @loading {
+    <div>loading...</div>
+    }
+  </div>
+</main>

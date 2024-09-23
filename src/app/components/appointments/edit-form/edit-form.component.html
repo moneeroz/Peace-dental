@@ -1,0 +1,44 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <!-- Name  -->
+  <div>
+    <span>Patient</span>
+    <p class="name">{{ appointment()?.name }}</p>
+  </div>
+
+  <!-- Doctor  -->
+  <label for="doctorId"> Doctor </label>
+  <div>
+    <select formControlName="doctorId" class="input">
+      @for (doctor of doctors(); track doctor.id) {
+      <option value="{{ doctor.id }}">
+        {{ doctor.name }}
+      </option>
+      }
+    </select>
+
+    <ng-icon name="heroUser" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Reason  -->
+  <label for="reason"> Reason </label>
+  <div>
+    <input class="input" formControlName="reason" type="text" id="reason" />
+    <ng-icon name="heroHeart" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Date  -->
+  <label for="date"> Appointment Date </label>
+  <div>
+    <ngx-flatpickr-wrapper
+      [config]="options"
+      formControlName="appointmentDate"
+      setDate="{{ appointment()?.appointmentDate }}"
+    />
+    <ng-icon name="heroCalendar" style="width: 18px; height: 18px" />
+  </div>
+
+  <div class="actions">
+    <a routerLink="/appointments">Cancel</a>
+    <Button type="submit">Update</Button>
+  </div>
+</form>
