@@ -1,0 +1,83 @@
+<div class="mobile">
+  @for (appointment of appointments(); track appointment.id) {
+  <div class="card">
+    <div class="appointment">
+      <div class="name">
+        <p>{{ appointment.name }}</p>
+        <p class="phone">{{ appointment.phone }}</p>
+      </div>
+
+      <div>
+        {{ appointment.date | date }}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="bold">D. {{ appointment.doctor }}</div>
+
+      <div>
+        <p>{{ appointment.reason }}</p>
+      </div>
+
+      <div class="appointment-actions">
+        <a routerLink="{{ appointment.id }}/edit" class="action-btn">
+          <span class="sr-only">Update</span>
+          <ng-icon name="heroPencil" style="width: 1.25rem" />
+        </a>
+        <button (click)="onDelete(appointment.id)" class="action-btn">
+          <span class="sr-only">Delete</span>
+          <ng-icon name="heroTrash" style="width: 1.25rem" />
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Phone</th>
+        <th>Date</th>
+        <th>Reason</th>
+        <th>Doctor</th>
+        <th><span class="sr-only">Edit</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (appointment of appointments(); track appointment.id) {
+      <tr>
+        <td>
+          {{ appointment.name }}
+        </td>
+        <td>
+          {{ appointment.phone }}
+        </td>
+        <td>
+          {{ appointment.date | date }}
+        </td>
+        <td>
+          {{ appointment.reason }}
+        </td>
+        <td>
+          {{ appointment.doctor }}
+        </td>
+        <td>
+          <div class="appointment-actions">
+            <a routerLink="{{ appointment.id }}/edit" class="action-btn">
+              <span class="sr-only">Update</span>
+              <ng-icon name="heroPencil" style="width: 1.25rem" />
+            </a>
+            <button (click)="onDelete(appointment.id)" class="action-btn">
+              <span class="sr-only">Delete</span>
+              <ng-icon name="heroTrash" style="width: 1.25rem" />
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
