@@ -36,10 +36,7 @@ export class LoginFormComponent {
 
   onSubmit() {
     this.authService.login(this.loginForm.getRawValue()).subscribe({
-      next: (user) => {
-        this.authService.setCurrentUser(user);
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('refresh_token', user.refreshToken);
+      next: () => {
         this.router.navigateByUrl('/overview');
       },
       error: (err) => {

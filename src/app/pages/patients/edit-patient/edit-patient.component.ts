@@ -1,15 +1,29 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { EditFormComponent } from '../../../components/patients/edit-form/edit-form.component';
-import { PatientService } from '../../../services/patient.service';
-import { IpatientInfo } from '../../../interfaces/ipatient-info';
+import {
+  Breadcrumb,
+  BreadcrumbsComponent,
+} from '../../../components/common/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-edit-patient',
   standalone: true,
-  imports: [EditFormComponent],
+  imports: [EditFormComponent, BreadcrumbsComponent],
   templateUrl: './edit-patient.component.html',
   styleUrl: './edit-patient.component.scss',
 })
-export class EditPatientComponent {
+export class EditPatientComponent implements OnInit {
   id = input.required<string>();
+  breadcrumbs: Breadcrumb[] = [];
+
+  ngOnInit() {
+    this.breadcrumbs = [
+      { label: 'Patients', url: '/patients' },
+      {
+        label: 'Edit Patient',
+        url: `/patients/${this.id()}/edit`,
+        active: true,
+      },
+    ];
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, Injector, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import {
@@ -27,15 +27,18 @@ import { AuthService } from '../../../../services/auth.service';
   ],
 })
 export class NavLinksComponent implements OnInit {
-  role: string | undefined = '';
   authService = inject(AuthService);
+  injector = inject(Injector);
+  role: string | undefined = 'user';
   ngOnInit() {
-    this.role = this.authService.userSignal()?.role;
+    effect(
+      () => {
+        this.role = this.authService.userSignal()?.role;
+      },
+      { injector: this.injector },
+    );
   }
 
-  get links() {
-    return this.role === 'admin' ? this.adminLinks : this.userLinks;
-  }
   userLinks = [
     { name: 'Overview', href: '/overview', icon: 'heroHome' },
     {
@@ -51,8 +54,5 @@ export class NavLinksComponent implements OnInit {
     { name: 'Patients', href: '/patients', icon: 'heroUserGroup' },
   ];
 
-  adminLinks = [
-    ...this.userLinks,
-    { name: 'Revenue', href: '/revenue', icon: 'heroBanknotes' },
-  ];
+  adminLink = { name: 'Revenue', href: '/revenue', icon: 'heroBanknotes' };
 }

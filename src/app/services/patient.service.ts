@@ -31,6 +31,9 @@ export class PatientService {
   getPatients(params: { page?: number; query: string }) {
     return this.http.get<Ipatient[]>(`${this.baseUrl}`, { params: params });
   }
+  getAllPatients() {
+    return this.http.get<IpatientInfo[]>(`${this.baseUrl}/all`);
+  }
 
   updatePatient(data: IpatientInfo) {
     return this.http.put(`${this.baseUrl}/${data.id}`, data);

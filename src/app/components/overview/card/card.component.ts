@@ -6,6 +6,8 @@ import {
   heroClock,
   heroCalendarDays,
   heroCalendar,
+  heroUserGroup,
+  heroInbox,
 } from '@ng-icons/heroicons/outline';
 @Component({
   selector: 'app-card',
@@ -14,7 +16,14 @@ import {
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
   providers: [
-    provideIcons({ heroBanknotes, heroClock, heroCalendarDays, heroCalendar }),
+    provideIcons({
+      heroBanknotes,
+      heroClock,
+      heroCalendarDays,
+      heroCalendar,
+      heroUserGroup,
+      heroInbox,
+    }),
   ],
 })
 export class CardComponent {

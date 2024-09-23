@@ -1,5 +1,5 @@
 h1 {
-  font-size: x-large;
+  font-size: 1.25rem;
 }
 
 .actions {
@@ -24,7 +24,8 @@ app-search {
 
 @media (min-width: 768px) {
   h1 {
-    font-size: xx-large;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
   }
 
   .actions {

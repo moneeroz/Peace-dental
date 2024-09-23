@@ -5,6 +5,7 @@ import { InvoiceService } from '../../services/invoice.service';
 import { SearchComponent } from '../../components/common/search/search.component';
 import { AddButtonComponent } from '../../components/common/add-button/add-button.component';
 import { PaginationComponent } from '../../components/common/pagination/pagination.component';
+import { PaginationService } from '../../services/pagination.service';
 
 @Component({
   selector: 'app-invoices',
@@ -19,10 +20,11 @@ import { PaginationComponent } from '../../components/common/pagination/paginati
   styleUrl: './invoices.component.scss',
 })
 export class InvoicesComponent implements OnInit {
+  paginationService = inject(PaginationService);
   private readonly invoiceService = inject(InvoiceService);
   readonly invoices = signal<Iinvoice[]>([]);
+
   query = signal<string>('');
-  totalPages = signal<number>(1);
   placeHolder = 'Search for Invoices...';
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class InvoicesComponent implements OnInit {
     query = query?.trim() || '';
     this.invoiceService.getInvoices({ query, page }).subscribe({
       next: (invoices) => {
+        this.paginationService.setCurrentPage(page);
         this.invoices.set(invoices);
       },
       error: (err) => {
@@ -46,7 +49,7 @@ export class InvoicesComponent implements OnInit {
     query = query?.trim() || '';
     this.invoiceService.getTotalPages(query).subscribe({
       next: (totalPages) => {
-        this.totalPages.set(totalPages);
+        this.paginationService.setTotalPages(totalPages);
       },
       error: (err) => {
         console.log(err);
@@ -69,6 +72,7 @@ export class InvoicesComponent implements OnInit {
     query = query?.trim() || '';
     this.query.set(query);
     this.loadInvoices(this.query());
+    this.loadTotalPages(this.query());
   }
 
   // pagination
