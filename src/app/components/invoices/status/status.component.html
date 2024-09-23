@@ -1,0 +1,11 @@
+@if (status() === 'paid') {
+<div class="paid">
+  Paid
+  <ng-icon name="heroCheck" style="width: 1rem" />
+</div>
+} @else {
+<div class="pending">
+  Pending
+  <ng-icon name="heroClock" style="width: 1rem" />
+</div>
+}

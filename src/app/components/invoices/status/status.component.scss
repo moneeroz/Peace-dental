@@ -1,0 +1,34 @@
+$white: #ffffff;
+$green-500: #22c55e;
+$gray-100: #f3f4f6;
+$gray-500: #6b7280;
+
+.paid {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 99999px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  color: $white;
+  background: $green-500;
+
+  ng-icon {
+    margin-left: 0.5rem;
+    color: $white;
+  }
+}
+
+.pending {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 99999px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  color: $gray-500;
+  background: $gray-100;
+
+  ng-icon {
+    margin-left: 0.5rem;
+    color: $gray-500;
+  }
+}

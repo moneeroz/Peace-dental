@@ -1,0 +1,63 @@
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+  <div class="title">
+    <div>
+      <span>Patient</span>
+      <p class="name">{{ invoice()?.name }}</p>
+    </div>
+    <div>
+      <span>Doctor</span>
+      <p>D. {{ invoice()?.doctor }}</p>
+    </div>
+  </div>
+
+  <!-- Reason  -->
+  <label for="reason"> Reason </label>
+  <div>
+    <input class="input" formControlName="reason" type="text" id="reason" />
+    <ng-icon name="heroHeart" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Amount  -->
+  <label for="amount"> Amount </label>
+  <div>
+    <input class="input" formControlName="amount" type="text" id="amount" />
+    <ng-icon name="heroCurrencyDollar" style="width: 18px; height: 18px" />
+  </div>
+
+  <!-- Status  -->
+  <label>Status</label>
+  <fieldset>
+    <section>
+      <div class="status">
+        <div>
+          <input
+            formControlName="status"
+            value="pending"
+            class="status-input"
+            type="radio"
+          />
+          <label class="pending-label common"
+            >pending
+            <ng-icon name="heroClock" style="width: 18px; height: 18px"
+          /></label>
+        </div>
+        <div>
+          <input
+            formControlName="status"
+            value="paid"
+            class="status-input"
+            type="radio"
+          />
+          <label class="paid-label common"
+            >paid <ng-icon name="heroCheck" style="width: 18px; height: 18px"
+          /></label>
+        </div>
+      </div>
+    </section>
+  </fieldset>
+
+  <div class="actions">
+    <a routerLink="/invoices">Cancel</a>
+    <Button type="submit">Update</Button>
+  </div>
+</form>
