@@ -25,6 +25,16 @@
           <span class="sr-only">Update</span>
           <ng-icon name="heroPencil" style="width: 1.25rem" />
         </a>
+        <button
+          class="action-btn"
+          [printSectionId]="invoice.id"
+          ngxPrint
+          [openNewTab]="true"
+          [useExistingCss]="true"
+        >
+          <span class="sr-only">Print</span>
+          <ng-icon name="heroPrinter" style="width: 1.25rem" />
+        </button>
         <button (click)="onDelete(invoice.id)" class="action-btn">
           <span class="sr-only">Delete</span>
           <ng-icon name="heroTrash" style="width: 1.25rem" />
@@ -32,6 +42,7 @@
       </div>
     </div>
   </div>
+  <app-print-invoice [invoice]="invoice" [printSection]="invoice.id" />
   }
 </div>
 
@@ -73,6 +84,16 @@
               <span class="sr-only">Update</span>
               <ng-icon name="heroPencil" style="width: 1.25rem" />
             </a>
+            <button
+              class="action-btn"
+              [printSectionId]="invoice.id"
+              ngxPrint
+              [openNewTab]="true"
+              [useExistingCss]="true"
+            >
+              <span class="sr-only">Print</span>
+              <ng-icon name="heroPrinter" style="width: 1.25rem" />
+            </button>
             <button (click)="onDelete(invoice.id)" class="action-btn">
               <span class="sr-only">Delete</span>
               <ng-icon name="heroTrash" style="width: 1.25rem" />
@@ -80,6 +101,7 @@
           </div>
         </td>
       </tr>
+      <app-print-invoice [invoice]="invoice" [printSection]="invoice.id" />
       }
     </tbody>
   </table>
