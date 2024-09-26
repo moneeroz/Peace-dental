@@ -1,0 +1,10 @@
+<div>
+  <label>{{ label() }}</label>
+
+  <select [formControl]="term">
+    <option value="" selected>All</option>
+    @for(i of data(); track $index){
+    <option [value]="i.id">{{ i.name }}</option>
+    }
+  </select>
+</div>
