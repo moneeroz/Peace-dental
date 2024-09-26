@@ -1,0 +1,34 @@
+@if(isDisabled()) {
+<div
+  [ngClass]="{
+    left: direction() === 'left',
+    right: direction() === 'right',
+    disabled: isDisabled(),
+    hover: !isDisabled()
+  }"
+>
+  @if (direction() === 'left') {
+  <ng-icon name="heroArrowLeft" style="width: 1rem" />
+
+  } @else {
+  <ng-icon name="heroArrowRight" style="width: 1rem" />
+  }
+</div>
+} @else {
+<button
+  (click)="emitPageNum()"
+  [ngClass]="{
+    left: direction() === 'left',
+    right: direction() === 'right',
+    disabled: isDisabled(),
+    hover: !isDisabled()
+  }"
+>
+  @if (direction() === 'left') {
+  <ng-icon name="heroArrowLeft" style="width: 1rem" />
+
+  } @else {
+  <ng-icon name="heroArrowRight" style="width: 1rem" />
+  }
+</button>
+}
