@@ -1,0 +1,27 @@
+<main>
+  <h1>Summery</h1>
+  <div class="filter">
+    <revenue-search (searchTerm)="onYearChange($event)" />
+
+    <app-fliter
+      [label]="'Month'"
+      [data]="months"
+      (filterTerm)="onMonthChange($event)"
+    />
+
+    <app-fliter
+      [label]="'Doctor'"
+      [data]="doctors()"
+      (filterTerm)="onDoctorChange($event)"
+    />
+  </div>
+
+  <div>
+    <app-card-wrapper [data]="cardData()" />
+  </div>
+  <div class="chart">
+    <app-chart [data]="chartData()" />
+
+    <app-latest-invoices [latestInvoices]="latestInvoices()" />
+  </div>
+</main>

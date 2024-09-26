@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Year Revenue</h2>
+
+  <div class="card">
+    <div class="chart-container">
+      <ngx-charts-bar-vertical-2d
+        scheme="cool"
+        [results]="data()"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [scheme]="colorScheme"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [legendTitle]="legendTitle"
+      />
+    </div>
+    <div class="status">
+      <ng-icon name="heroArrowPath" style="width: 1.25rem; height: 1.25rem" />
+      <h3>Last 12 months</h3>
+    </div>
+  </div>
+</div>

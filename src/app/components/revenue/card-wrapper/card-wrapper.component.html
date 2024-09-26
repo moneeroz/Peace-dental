@@ -1,0 +1,26 @@
+<div>
+  <app-card
+    title="Patients"
+    [value]="data()?.numberOfPatients"
+    icon="heroUserGroup"
+    type="count"
+  />
+  <app-card
+    title="Invoices"
+    [value]="data()?.numberOfInvoices"
+    icon="heroInbox"
+    type="count"
+  />
+  <app-card
+    title="Paid"
+    [value]="data()?.totalPaidInvoices"
+    icon="heroBanknotes"
+    type="currency"
+  />
+  <app-card
+    title="Pending"
+    [value]="data()?.totalPendingInvoices"
+    icon="heroClock"
+    type="currency"
+  />
+</div>
