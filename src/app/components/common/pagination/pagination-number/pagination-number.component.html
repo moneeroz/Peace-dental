@@ -1,0 +1,24 @@
+@if(isActive() || position() === 'middle') {
+<div
+  [ngClass]="{
+    active: isActive(),
+    first: position() === 'first' || position() === 'single',
+    last: position() === 'last' || position() === 'single',
+    middle: position() === 'middle',
+    hover: !isActive() && position() !== 'middle'
+  }"
+>
+  {{ page() }}
+</div>
+} @else {
+<button
+  (click)="emitPageNum()"
+  [ngClass]="{
+    first: position() === 'first' || position() === 'single',
+    last: position() === 'last' || position() === 'single',
+    hover: !isActive() && position() !== 'middle'
+  }"
+>
+  {{ page() }}
+</button>
+}

@@ -1,0 +1,31 @@
+<section>
+  <div>
+    <app-pagination-arrow
+      [direction]="'left'"
+      [link]="''"
+      [isDisabled]="currentPage() <= 1"
+      (pageChange)="emitPageNum($event)"
+      [page]="currentPage()"
+    />
+  </div>
+  <div class="pages">
+    @for(page of allPages(); track $index) {
+    <app-pagination-number
+      [page]="page"
+      [isActive]="currentPage() === page"
+      [link]="''"
+      [position]="calcPosition($index, page)"
+      (pageChange)="emitPageNum($event)"
+    />
+    }
+  </div>
+  <div>
+    <app-pagination-arrow
+      [direction]="'right'"
+      [link]="''"
+      [isDisabled]="currentPage() >= totalPages()!"
+      (pageChange)="emitPageNum($event)"
+      [page]="currentPage()"
+    />
+  </div>
+</section>

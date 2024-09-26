@@ -1,0 +1,46 @@
+<div [id]="invoice().id" class="main">
+  <section>
+    <div class="header">
+      <div class="header-title">
+        <img src="imgs/tooth.png" />
+        <div>
+          <h1>Peace Dental</h1>
+          <p>Sana'a, Sawan st</p>
+          <p>+9672023333</p>
+        </div>
+      </div>
+      <div>
+        <p>{{ invoice().date | date }}</p>
+      </div>
+    </div>
+  </section>
+  <section class="details">
+    <p><span>Doctor:</span> {{ invoice().doctor }}</p>
+    <p><span>Patient:</span> {{ invoice().name }}</p>
+    <p><span>Reason:</span> {{ invoice().reason }}</p>
+    <div class="total-container">
+      <div class="total">
+        <span>Status</span>
+        <p class="amount">{{ invoice().status }}</p>
+      </div>
+      <div class="total">
+        <span>Total</span>
+        <p class="amount">{{ invoice().amount | currency }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="footer">
+    <div>
+      <span>Business Hours:</span>
+      <p>Sat - Thu: 9:00 AM - 5:00 PM</p>
+    </div>
+    <div>
+      <span>Contact us:</span>
+      <div>
+        <p>Phone: +9672023333</p>
+        <p>Email: inquries&commat;peacedental.com</p>
+      </div>
+    </div>
+  </section>
+</div>

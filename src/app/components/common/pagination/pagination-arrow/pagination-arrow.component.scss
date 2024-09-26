@@ -1,0 +1,42 @@
+$gray-100: #f3f4f6;
+$gray-300: #d1d5db;
+$white: #ffffff;
+
+div,
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: $white;
+  border: 1px solid $gray-300;
+  border-radius: 0.375rem;
+}
+
+.disabled {
+  pointer-events: none;
+  color: $gray-300;
+}
+
+.right {
+  margin-left: 0.5rem;
+}
+
+.left {
+  margin-right: 0.5rem;
+}
+
+.hover:hover {
+  background: $gray-100;
+}
+
+@media (min-width: 768px) {
+  .right {
+    margin-left: 1rem;
+  }
+
+  .left {
+    margin-right: 1rem;
+  }
+}
