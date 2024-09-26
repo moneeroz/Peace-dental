@@ -4,12 +4,14 @@ import { ICardData } from '../interfaces/icard-data';
 import { ILatestAppointment } from '../interfaces/ilatest-appointment';
 import { ILatestInvoice } from '../interfaces/ilatest-invoice';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Iappointment } from '../interfaces/iappointment';
+import { IappointmentInfo } from '../interfaces/iappointment-info';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OverviewService {
-  private baseUrl: string = 'http://localhost:3030/api/overview';
+  private baseUrl: string = 'https://peace-be.onrender.com/api/overview';
   private http = inject(HttpClient);
 
   // card data
@@ -38,5 +40,24 @@ export class OverviewService {
 
   getLatestInvoices(): Signal<ILatestInvoice[] | undefined> {
     return this.latestInvoices;
+  }
+  // appointments calender
+  private calenderData$ = this.http.get<Iappointment[]>(
+    `${this.baseUrl}/calender`,
+  );
+  private readonly calenderData = toSignal(this.calenderData$);
+
+  getCalenderData(): Signal<Iappointment[] | undefined> {
+    return this.calenderData;
+  }
+
+  getData() {
+    return this.http.get<IappointmentInfo[]>(`${this.baseUrl}/calender`);
+  }
+
+  updateDate({ id, appointmentDate }: { id: string; appointmentDate: string }) {
+    return this.http.put(`${this.baseUrl}/update-appointment/${id}`, {
+      appointmentDate,
+    });
   }
 }
