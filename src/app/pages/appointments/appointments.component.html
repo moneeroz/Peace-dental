@@ -9,10 +9,14 @@
     <app-add-button text="Add Appointment" link="/appointments/new" />
   </div>
 
+  @defer() {
   <app-table
     [appointments]="appointments()"
     (onDeleteAppointment)="deleteAppointment($event)"
   />
+  } @placeholder (minimum 600ms) {
+  <skeleton-appointment-table />
+  }
 
   <div class="pagination">
     @defer{

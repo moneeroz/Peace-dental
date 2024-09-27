@@ -9,10 +9,14 @@
     <app-add-button text="Add Invoice" link="/invoices/new" />
   </div>
 
+  @defer () {
   <app-table
     [invoices]="invoices()"
     (onDeleteInvoice)="deleteInvoice($event)"
   />
+  } @placeholder (minimum 600ms) {
+  <skeleton-invoice-table />
+  }
 
   <div class="pagination">
     @defer{

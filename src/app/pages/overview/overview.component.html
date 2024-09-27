@@ -1,7 +1,9 @@
 <h1>Overview</h1>
+@defer {
+
 <app-card-wrapper [data]="data()" />
+} @placeholder (minimum 600ms) {
+
+<skeleton-card-wrapper />
+}
 <app-calender />
-<!-- <div>
-  <app-latest-appointments [latestAppointments]="latestAppointments()" />
-  <app-latest-invoices [latestInvoices]="latestInvoices()" />
-</div> -->

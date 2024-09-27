@@ -7,10 +7,16 @@
     />
     <app-add-button text="Add Patient" link="/patients/new" />
   </div>
+
+  @defer () {
   <app-table
     [patients]="patients()"
     (onDeletePatient)="deletePatient($event)"
   />
+
+  } @placeholder (minimum 600ms) {
+  <skeleton-patients-table />
+  }
 
   <div class="pagination">
     @defer{

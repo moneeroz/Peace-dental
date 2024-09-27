@@ -1,0 +1,87 @@
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$white: #ffffff;
+
+.main {
+  position: relative;
+}
+
+.invoice-skeleton {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid $gray-100;
+  padding: 1rem 0;
+
+  .invoice-header {
+    display: flex;
+    flex-direction: column;
+
+    .invoice-title {
+      height: 1rem;
+      width: 10rem;
+      border-radius: 0.375rem;
+      background-color: $gray-200;
+    }
+
+    .invoice-subtitle {
+      margin-top: 0.34rem;
+      height: 0.75rem;
+      width: 5rem;
+      border-radius: 0.375rem;
+      background-color: $gray-200;
+    }
+  }
+
+  .invoice-amount {
+    margin-top: 0.5rem;
+    height: 1rem;
+    width: 5rem;
+    border-radius: 0.375rem;
+    background-color: $gray-200;
+  }
+}
+
+.latest-invoices-skeleton {
+  .header-placeholder {
+    margin-bottom: 1rem;
+    height: 2rem;
+    width: 9rem;
+    border-radius: 0.375rem;
+    background-color: $gray-100;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.75rem;
+    background-color: $gray-100;
+    padding: 1rem;
+
+    .invoice-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      padding-bottom: 0.5rem;
+      padding-top: 1.5rem;
+      .avatar-placeholder {
+        height: 1.25rem;
+        width: 1.25rem;
+        border-radius: 9999px;
+        background-color: $gray-200;
+      }
+
+      .text-placeholder {
+        margin-left: 0.5rem;
+        height: 1rem;
+        width: 5rem;
+        border-radius: 0.375rem;
+        background-color: $gray-200;
+      }
+    }
+  }
+}

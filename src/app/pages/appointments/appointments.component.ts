@@ -6,6 +6,7 @@ import { SearchComponent } from '../../components/common/search/search.component
 import { AddButtonComponent } from '../../components/common/add-button/add-button.component';
 import { PaginationComponent } from '../../components/common/pagination/pagination.component';
 import { PaginationService } from '../../services/pagination.service';
+import { AppointmentTableSkeleton } from '../../components/skeletons/appointment-table-skeleton/appointment-table-skeleton.component';
 
 @Component({
   selector: 'app-appointments',
@@ -15,6 +16,7 @@ import { PaginationService } from '../../services/pagination.service';
     SearchComponent,
     AddButtonComponent,
     PaginationComponent,
+    AppointmentTableSkeleton,
   ],
   templateUrl: './appointments.component.html',
   styleUrl: './appointments.component.scss',

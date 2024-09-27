@@ -1,0 +1,66 @@
+<div class="mobile">
+  @for (_ of [1,2,3,4]; track $index) {
+  <div class="card">
+    <div class="main">
+      <div class="patient">
+        <div class="name"></div>
+        <div class="phone"></div>
+      </div>
+
+      <div class="patient-actions">
+        <div class="action-btn"></div>
+        <div class="action-btn"></div>
+      </div>
+    </div>
+    <div class="total"></div>
+
+    <div class="invoice">
+      <div>
+        <p>Pending</p>
+        <div class="amount"></div>
+      </div>
+      <div>
+        <p>Paid</p>
+        <div class="amount"></div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (_ of [1,2,3,4,5,6,7,8]; track $index) {
+      <tr>
+        <td><div class="td-name"></div></td>
+        <td>
+          <div class="td-phone"><div></div></div>
+        </td>
+        <td>
+          <div class="td-total"></div>
+        </td>
+        <td>
+          <div class="td-amount"></div>
+        </td>
+        <td><div class="td-amount"></div></td>
+        <td>
+          <div class="patient-actions">
+            <div class="action-btn"></div>
+            <div class="action-btn"></div>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

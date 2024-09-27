@@ -6,6 +6,7 @@ import { SearchComponent } from '../../components/common/search/search.component
 import { AddButtonComponent } from '../../components/common/add-button/add-button.component';
 import { PaginationComponent } from '../../components/common/pagination/pagination.component';
 import { PaginationService } from '../../services/pagination.service';
+import { InvoiceTableSkeleton } from '../../components/skeletons/invoice-table-skeleton/invoice-table-skeleton.component';
 
 @Component({
   selector: 'app-invoices',
@@ -15,6 +16,7 @@ import { PaginationService } from '../../services/pagination.service';
     SearchComponent,
     AddButtonComponent,
     PaginationComponent,
+    InvoiceTableSkeleton,
   ],
   templateUrl: './invoices.component.html',
   styleUrl: './invoices.component.scss',
