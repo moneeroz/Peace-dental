@@ -17,11 +17,22 @@
   </div>
 
   <div>
+    @defer () {
     <app-card-wrapper [data]="cardData()" />
+    } @placeholder (minimum 600ms) {
+    <skeleton-card-wrapper />
+    }
   </div>
-  <div class="chart">
-    <app-chart [data]="chartData()" />
 
+  <div class="chart">
+    @defer () {
+    <app-chart [data]="chartData()" />
+    } @placeholder (minimum 600ms) {
+    <skeleton-chart />
+    } @defer () {
     <app-latest-invoices [latestInvoices]="latestInvoices()" />
+    } @placeholder (minimum 500ms) {
+    <skeleton-invoices-card />
+    }
   </div>
 </main>

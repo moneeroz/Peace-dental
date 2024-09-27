@@ -16,11 +16,11 @@
         <p>Status</p>
         <app-status [status]="invoice.status" />
       </div>
-    </div>
 
-    <div>
-      <p>Date</p>
-      <p class="bold">{{ invoice.date | date }}</p>
+      <div class="date">
+        <p>Date</p>
+        <p class="bold">{{ invoice.date | date }}</p>
+      </div>
     </div>
   </div>
   }

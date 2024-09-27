@@ -3,6 +3,7 @@ export interface IappointmentInfo {
   appointmentDate: string;
   patientId?: string;
   doctorId: string;
+  doctor?: string;
   reason: string;
   name?: string;
   date?: string;

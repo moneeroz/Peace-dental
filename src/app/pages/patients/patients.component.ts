@@ -6,6 +6,7 @@ import { SearchComponent } from '../../components/common/search/search.component
 import { AddButtonComponent } from '../../components/common/add-button/add-button.component';
 import { PaginationComponent } from '../../components/common/pagination/pagination.component';
 import { PaginationService } from '../../services/pagination.service';
+import { PatientsTableSkeleton } from '../../components/skeletons/patients-table-skeleton/patients-table-skeleton.component';
 
 @Component({
   selector: 'app-patients',
@@ -15,6 +16,7 @@ import { PaginationService } from '../../services/pagination.service';
     SearchComponent,
     AddButtonComponent,
     PaginationComponent,
+    PatientsTableSkeleton,
   ],
   templateUrl: './patients.component.html',
   styleUrl: './patients.component.scss',

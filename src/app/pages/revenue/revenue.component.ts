@@ -11,6 +11,9 @@ import { months } from '../../lib/utils';
 import { Idoctor } from '../../interfaces/idoctor';
 import { DoctorService } from '../../services/doctor.service';
 import { SearchComponent } from '../../components/revenue/search/search.component';
+import { CardWrapperSkeleton } from '../../components/skeletons/card-wrapper/card-wrapper.component';
+import { ChartSkeleton } from '../../components/skeletons/chart-skeleton/chart-skeleton.component';
+import { InvoicesCardSkeleton } from '../../components/skeletons/invoices-card-skeleton/invoices-card-skeleton.component';
 
 @Component({
   selector: 'app-revenue',
@@ -21,6 +24,9 @@ import { SearchComponent } from '../../components/revenue/search/search.componen
     LatestInvoicesComponent,
     FliterComponent,
     SearchComponent,
+    CardWrapperSkeleton,
+    ChartSkeleton,
+    InvoicesCardSkeleton,
   ],
   templateUrl: './revenue.component.html',
   styleUrl: './revenue.component.scss',

@@ -1,5 +1,7 @@
 @if(patientInvoices().length > 0) {
 <h1>{{ patientInvoices()[0].name }}</h1>
-}
-
+} @defer () {
 <app-patient-table [invoices]="patientInvoices()" />
+} @placeholder (minimum 600ms) {
+<skeleton-patient-table />
+}
