@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IRevenuCard } from '../interfaces/irevenu-card';
 import { IChartData } from '../interfaces/ichart-data';
+import { API_URL } from '../lib/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RevenueService {
-  private baseUrl: string = 'https://peace-be.onrender.com/api/revenue';
+  private baseUrl: string = `${API_URL}/revenue`;
   private http = inject(HttpClient);
 
   // card data
