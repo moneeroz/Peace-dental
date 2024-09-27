@@ -1,0 +1,22 @@
+<div class="main">
+  <div class="latest-invoices-skeleton shimmer">
+    <div class="header-placeholder"></div>
+    <div class="content">
+      <div class="invoice-list">
+        @for (i of [1,2,3,4,5]; track $index) {
+        <div class="invoice-skeleton">
+          <div class="invoice-header">
+            <div class="invoice-title"></div>
+            <div class="invoice-subtitle"></div>
+          </div>
+          <div class="invoice-amount"></div>
+        </div>
+        }
+      </div>
+      <div class="footer">
+        <div class="avatar-placeholder"></div>
+        <div class="text-placeholder"></div>
+      </div>
+    </div>
+  </div>
+</div>

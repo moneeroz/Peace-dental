@@ -1,0 +1,51 @@
+<div class="mobile">
+  @for (_ of [1,2,3]; track $index) {
+  <div class="card">
+    <div class="main">
+      <div class="patient">
+        <div class="name"></div>
+        <div class="reason"></div>
+      </div>
+    </div>
+    <div class="invoice">
+      <div>
+        <p>Total</p>
+        <div class="amount"></div>
+      </div>
+      <div>
+        <p>Status</p>
+        <div class="amount"></div>
+      </div>
+      <div>
+        <p>Date</p>
+        <div class="date"></div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
+
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (_ of [1,2,3,4,5]; track $index) {
+      <tr>
+        <td><div class="td-name"></div></td>
+        <td><div class="td-reason"></div></td>
+        <td><div class="td-amount"></div></td>
+        <td><div class="td-date"></div></td>
+        <td><div class="td-reason"></div></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
