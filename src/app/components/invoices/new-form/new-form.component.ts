@@ -1,5 +1,9 @@
 import { Component, inject, OnInit, output, signal } from '@angular/core';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { IinvoiceInfo } from '../../../interfaces/iinvoice-info';
 import { RouterLink } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -57,11 +61,13 @@ export class NewFormComponent implements OnInit {
   doctorService = inject(DoctorService);
 
   invoiceForm = this.fb.group({
-    patientId: this.fb.control(''),
-    doctorId: this.fb.control(''),
-    reason: this.fb.control(''),
-    amount: this.fb.control(''),
-    status: this.fb.control(''),
+    patientId: this.fb.control('', { validators: [Validators.required] }),
+    doctorId: this.fb.control('', { validators: [Validators.required] }),
+    reason: this.fb.control('', {
+      validators: [Validators.required, Validators.minLength(4)],
+    }),
+    amount: this.fb.control('', { validators: [Validators.required] }),
+    status: this.fb.control('', { validators: [Validators.required] }),
   });
 
   ngOnInit() {

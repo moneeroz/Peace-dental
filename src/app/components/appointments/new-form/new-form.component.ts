@@ -1,6 +1,10 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { IappointmentInfo } from '../../../interfaces/iappointment-info';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IpatientInfo } from '../../../interfaces/ipatient-info';
 import { Idoctor } from '../../../interfaces/idoctor';
@@ -59,10 +63,12 @@ export class NewFormComponent {
   doctorService = inject(DoctorService);
 
   appointmentForm = this.fb.group({
-    patientId: this.fb.control(''),
-    doctorId: this.fb.control(''),
-    reason: this.fb.control(''),
-    appointmentDate: this.fb.control(''),
+    patientId: this.fb.control('', { validators: [Validators.required] }),
+    doctorId: this.fb.control('', { validators: [Validators.required] }),
+    reason: this.fb.control('', {
+      validators: [Validators.required, Validators.minLength(4)],
+    }),
+    appointmentDate: this.fb.control('', { validators: [Validators.required] }),
   });
 
   options: FlatpickrOptions = {

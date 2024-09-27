@@ -1,11 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  OnInit,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { IappointmentInfo } from '../../../interfaces/iappointment-info';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';

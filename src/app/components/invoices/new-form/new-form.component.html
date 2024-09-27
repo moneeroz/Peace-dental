@@ -1,5 +1,5 @@
 <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
-  <!-- Name  -->
+  <!-- Patient  -->
   <label for="patientId"> Patient </label>
   <div>
     <ng-select
@@ -13,6 +13,12 @@
     />
     <ng-icon name="heroUserPlus" style="width: 18px; height: 18px" />
   </div>
+
+  <!-- Patient validation errors -->
+  @if (invoiceForm.controls.patientId.touched) {
+  @if(invoiceForm.controls.patientId.errors?.["required"]) {
+  <small>*Please select a patient</small>
+  } }
 
   <!-- Doctor  -->
   <label for="doctorId"> Doctor </label>
@@ -30,6 +36,12 @@
     <ng-icon name="heroUser" style="width: 18px; height: 18px" />
   </div>
 
+  <!-- Doctor validation errors -->
+  @if (invoiceForm.controls.doctorId.touched) {
+  @if(invoiceForm.controls.doctorId.errors?.["required"]) {
+  <small>*Please select a doctor</small>
+  } }
+
   <!-- Reason  -->
   <label for="reason"> Reason </label>
   <div>
@@ -37,12 +49,27 @@
     <ng-icon name="heroHeart" style="width: 18px; height: 18px" />
   </div>
 
+  <!-- Reason validation errors -->
+  @if (invoiceForm.controls.reason.touched) {
+  @if(invoiceForm.controls.reason.errors?.["required"]) {
+  <small>*Reason is required</small>
+  } @if(invoiceForm.controls.reason.dirty &&
+  invoiceForm.controls.reason.errors?.["minlength"]) {
+  <small>*Reason must be at least 4 charecters long</small>
+  }}
+
   <!-- Amount  -->
   <label for="amount"> Amount </label>
   <div>
     <input class="input" formControlName="amount" type="s" id="amount" />
     <ng-icon name="heroCurrencyDollar" style="width: 18px; height: 18px" />
   </div>
+
+  <!-- Amount validation errors -->
+  @if (invoiceForm.controls.amount.touched) {
+  @if(invoiceForm.controls.amount.errors?.["required"]) {
+  <small>*Amount is required</small>
+  } }
 
   <!-- Status  -->
   <label>Status</label>

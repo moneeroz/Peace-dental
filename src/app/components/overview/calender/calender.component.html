@@ -1,0 +1,100 @@
+<div id="calender">
+  <section class="calender-container">
+    <!-- Actions -->
+    <div class="actions">
+      <div>
+        <div class="btn-group">
+          <div
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Previous
+          </div>
+          <div
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate"
+          >
+            Today
+          </div>
+          <div
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"
+          >
+            Next
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>{{ viewDate | calendarDate : view + "ViewTitle" : "en" }}</h3>
+      </div>
+      <div>
+        <div class="btn-group">
+          <div
+            (click)="setView(CalendarView.Month)"
+            [class.active]="view === CalendarView.Month"
+          >
+            Month
+          </div>
+          <div
+            (click)="setView(CalendarView.Week)"
+            [class.active]="view === CalendarView.Week"
+          >
+            Week
+          </div>
+          <div
+            (click)="setView(CalendarView.Day)"
+            [class.active]="view === CalendarView.Day"
+          >
+            Day
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <!-- Calendar -->
+    <div [ngSwitch]="view" class="cal">
+      <!-- Month View -->
+      <mwl-calendar-month-view
+        *ngSwitchCase="CalendarView.Month"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        [activeDayIsOpen]="activeDayIsOpen"
+        (dayClicked)="dayClicked($event.day)"
+        [excludeDays]="[0, 6]"
+      >
+      </mwl-calendar-month-view>
+
+      <!-- Week View -->
+      <mwl-calendar-week-view
+        *ngSwitchCase="CalendarView.Week"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)"
+        [excludeDays]="[0, 6]"
+        [dayStartHour]="8"
+        [dayEndHour]="22"
+      >
+      </mwl-calendar-week-view>
+
+      <!-- Day View -->
+      <mwl-calendar-day-view
+        *ngSwitchCase="CalendarView.Day"
+        [viewDate]="viewDate"
+        [events]="events"
+        [refresh]="refresh"
+        (eventTimesChanged)="eventTimesChanged($event)"
+        [dayStartHour]="8"
+        [dayEndHour]="22"
+      >
+      </mwl-calendar-day-view>
+    </div>
+  </section>
+</div>

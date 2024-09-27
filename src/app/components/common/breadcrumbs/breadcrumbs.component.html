@@ -1,0 +1,17 @@
+<nav>
+  <ol>
+    @for(breadcrumb of breadcrumbs(); track $index) {
+    <li>
+      <a
+        [routerLink]="breadcrumb.url"
+        [ngClass]="{ active: breadcrumb.active }"
+        >{{ breadcrumb.label }}</a
+      >
+
+      @if($index < (breadcrumbs().length -1)) {
+      <span>/</span>
+      }
+    </li>
+    }
+  </ol>
+</nav>

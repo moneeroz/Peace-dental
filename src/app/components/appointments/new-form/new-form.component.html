@@ -1,5 +1,5 @@
 <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
-  <!-- Name  -->
+  <!-- Patient  -->
   <label for="patientId"> Patient </label>
   <div>
     <ng-select
@@ -13,6 +13,12 @@
     />
     <ng-icon name="heroUserPlus" style="width: 18px; height: 18px" />
   </div>
+
+  <!-- Patient validation errors -->
+  @if (appointmentForm.controls.patientId.touched) {
+  @if(appointmentForm.controls.patientId.errors?.["required"]) {
+  <small>*Please select a patient</small>
+  } }
 
   <!-- Doctor  -->
   <label for="doctorId"> Doctor </label>
@@ -30,6 +36,12 @@
     <ng-icon name="heroUser" style="width: 18px; height: 18px" />
   </div>
 
+  <!-- Doctor validation errors -->
+  @if (appointmentForm.controls.doctorId.touched) {
+  @if(appointmentForm.controls.doctorId.errors?.["required"]) {
+  <small>*Please select a doctor</small>
+  } }
+
   <!-- Reason  -->
   <label for="reason"> Reason </label>
   <div>
@@ -37,16 +49,30 @@
     <ng-icon name="heroHeart" style="width: 18px; height: 18px" />
   </div>
 
+  <!-- Reason validation errors -->
+  @if (appointmentForm.controls.reason.touched) {
+  @if(appointmentForm.controls.reason.errors?.["required"]) {
+  <small>*Reason is required</small>
+  } @if(appointmentForm.controls.reason.dirty &&
+  appointmentForm.controls.reason.errors?.["minlength"]) {
+  <small>*Reason must be at least 4 charecters long</small>
+  }}
+
   <!-- Date  -->
   <label for="date"> Appointment Date </label>
   <div>
-    <!-- <input class="input" formControlName="appointmentDate" type="datetime" id="date" /> -->
     <ngx-flatpickr-wrapper
       [config]="options"
       formControlName="appointmentDate"
     />
     <ng-icon name="heroCalendar" style="width: 18px; height: 18px" />
   </div>
+
+  <!-- Date validation errors -->
+  @if (appointmentForm.controls.appointmentDate.touched) {
+  @if(appointmentForm.controls.appointmentDate.errors?.["required"]) {
+  <small>*Please select a valid date</small>
+  } }
 
   <div class="actions">
     <a routerLink="/appointments">Cancel</a>
