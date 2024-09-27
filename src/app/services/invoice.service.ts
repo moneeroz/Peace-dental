@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Iinvoice } from '../interfaces/iinvoice';
 import { IinvoiceInfo } from '../interfaces/iinvoice-info';
+import { API_URL } from '../lib/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvoiceService {
-  private baseUrl: string = 'http://localhost:3030/api/invoices';
+  private baseUrl: string = `${API_URL}/invoices`;
   private http = inject(HttpClient);
 
   addInvoice(data: IinvoiceInfo) {

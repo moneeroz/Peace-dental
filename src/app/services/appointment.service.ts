@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Iappointment } from '../interfaces/iappointment';
 import { IappointmentInfo } from '../interfaces/iappointment-info';
+import { API_URL } from '../lib/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppointmentService {
-  private baseUrl: string = 'http://localhost:3030/api/appointments';
+  private baseUrl: string = `${API_URL}/appointments`;
   private http = inject(HttpClient);
 
   addAppointment(data: IappointmentInfo) {

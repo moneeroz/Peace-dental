@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Iuser } from '../interfaces/iuser';
 import { map, Observable } from 'rxjs';
+import { API_URL } from '../lib/utils';
 
 export interface loginData {
   email: string;
@@ -12,7 +13,7 @@ export interface loginData {
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl: string = 'http://localhost:3030/api/auth';
+  private baseUrl: string = `${API_URL}/auth`;
   private http = inject(HttpClient);
 
   // Current user
@@ -47,7 +48,14 @@ export class AuthService {
 
   // Token verification
   verifyToken$(refreshToken: string): Observable<Iuser> {
-    return this.http.post<Iuser>(`${this.baseUrl}/token`, { refreshToken });
+    return this.http
+      .post<Iuser>(`${this.baseUrl}/token`, { refreshToken })
+      .pipe(
+        map((user) => {
+          this.setCurrentUser(user);
+          return user;
+        }),
+      );
   }
 
   // Logout

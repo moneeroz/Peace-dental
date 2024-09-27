@@ -6,12 +6,13 @@ import { ILatestInvoice } from '../interfaces/ilatest-invoice';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Iappointment } from '../interfaces/iappointment';
 import { IappointmentInfo } from '../interfaces/iappointment-info';
+import { API_URL } from '../lib/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OverviewService {
-  private baseUrl: string = 'https://peace-be.onrender.com/api/overview';
+  private baseUrl: string = `${API_URL}/overview`;
   private http = inject(HttpClient);
 
   // card data

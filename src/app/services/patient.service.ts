@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Ipatient } from '../interfaces/ipatient';
 import { IpatientInfo } from '../interfaces/ipatient-info';
+import { API_URL } from '../lib/utils';
 
 export interface IpatientInvoices {
   id: string;
@@ -17,7 +18,7 @@ export interface IpatientInvoices {
   providedIn: 'root',
 })
 export class PatientService {
-  private baseUrl: string = 'http://localhost:3030/api/patients';
+  private baseUrl: string = `${API_URL}/patients`;
   private http = inject(HttpClient);
 
   addPatient(data: IpatientInfo) {
