@@ -10,6 +10,15 @@
     <ng-icon name="heroUser" style="width: 18px; height: 18px" />
   </div>
 
+  <!-- Patient validation errors -->
+  @if (patientForm.controls.name.touched) {
+  @if(patientForm.controls.name.errors?.["required"]) {
+  <small>*Patient name is required</small>
+  } @if(patientForm.controls.name.dirty &&
+  patientForm.controls.name.errors?.["minlength"]) {
+  <small>*Patient name must be at least 4 charecters long</small>
+  } }
+
   <!-- Patient Phone  -->
   <label> Patient Phone </label>
   <div>
@@ -20,6 +29,15 @@
     />
     <ng-icon name="heroPhone" style="width: 18px; height: 18px" />
   </div>
+
+  <!-- Patient validation errors -->
+  @if (patientForm.controls.phone.touched) {
+  @if(patientForm.controls.phone.errors?.["required"]) {
+  <small>*Patient phone is required</small>
+  } @if(patientForm.controls.phone.dirty &&
+  patientForm.controls.phone.errors?.["minlength"]) {
+  <small>*Patient phone must be at least 4 charecters long</small>
+  } }
 
   <div class="actions">
     <a routerLink="/patients">Cancel</a>

@@ -8,7 +8,6 @@ $gray-500: #6b7280;
 $gray-800: #1f2937;
 $gray-900: #111827;
 $gray-900: #111827;
-$red-500: #ef4444;
 $white: #ffffff;
 
 form {
@@ -104,9 +103,4 @@ form {
   button:disabled {
     background: $blue-400;
   }
-}
-
-small {
-  font-size: 0.75rem;
-  color: $red-500;
 }

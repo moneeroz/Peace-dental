@@ -23,10 +23,10 @@ export class NewFormComponent {
 
   patientForm = this.fb.group({
     name: this.fb.control('', {
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.minLength(4)],
     }),
     phone: this.fb.control('', {
-      validators: [Validators.required],
+      validators: [Validators.required, Validators.minLength(4)],
     }),
   });
 
