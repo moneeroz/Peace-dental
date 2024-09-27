@@ -31,7 +31,7 @@ export function initiliazeApp(authService: AuthService, router: Router) {
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('role');
       localStorage.removeItem('token');
-      router.navigateByUrl('/login');
+      router.navigateByUrl('/home');
       return;
     }
 
