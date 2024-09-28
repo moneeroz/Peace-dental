@@ -41,6 +41,7 @@ export class AuthService {
         localStorage.setItem('refresh_token', user.refreshToken);
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('role', user.role);
+        localStorage.setItem('id', user.id);
         return user;
       }),
     );
@@ -64,10 +65,7 @@ export class AuthService {
       map(() => {
         this.setCurrentUser(null);
         this.setLogin(false);
-        localStorage.removeItem('token');
-        localStorage.removeItem('refresh_token');
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('role');
+        localStorage.clear();
       }),
     );
   }

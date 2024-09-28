@@ -19,17 +19,20 @@ export class SidenavComponent {
   router = inject(Router);
 
   logOut() {
-    const id = this.authService.userSignal()?.id;
+    const id = localStorage.getItem('id');
 
-    localStorage.removeItem('isLoggedIn');
-    this.router.navigateByUrl('/login');
     if (id) {
       this.authService.logout(id).subscribe({
-        next: () => {},
+        next: () => {
+          this.router.navigateByUrl('/login');
+        },
         error: (err) => {
           console.error(err);
         },
       });
+    } else {
+      localStorage.clear();
+      this.router.navigateByUrl('/login');
     }
   }
 }
