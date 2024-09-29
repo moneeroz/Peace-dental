@@ -1,6 +1,6 @@
 # Peace Dental
 
-Peace Dental is a comprehensive web application designed for dental clinics to efficiently manage patients, appointments, invoices, and revenue. The application features simple ui and intuitive navigation, making it easy for both patients and dental staff to access and manage their data. The project is built using Angular and TypeScript, and utilizes PostgreSQL for database management. Additionally, the application incorporates role-based access control, JWT authentication, and guarded routes to ensure secure access to sensitive areas. Overall, Peace Dental aims to provide a user-friendly and efficient solution for managing dental practices.
+Peace Dental is a comprehensive web application designed for dental clinics to efficiently manage patients, appointments, invoices, and revenue. The application features simple ui and intuitive navigation, making it easy for both doctors and dental staff to access and manage their data. The project is built using Angular and TypeScript, and utilizes PostgreSQL for database management. Additionally, the application incorporates role-based access control, JWT authentication, and guarded routes to ensure secure access to sensitive areas. Overall, Peace Dental aims to provide a user-friendly and efficient solution for managing dental practices.
 
 ## Table of Contents
 
