@@ -67,7 +67,7 @@ export class NewFormComponent implements OnInit {
       validators: [Validators.required, Validators.minLength(4)],
     }),
     amount: this.fb.control('', { validators: [Validators.required] }),
-    status: this.fb.control('', { validators: [Validators.required] }),
+    status: this.fb.control(0, { validators: [Validators.required] }),
   });
 
   ngOnInit() {
@@ -77,8 +77,8 @@ export class NewFormComponent implements OnInit {
 
   onSubmit() {
     const data = this.invoiceForm.getRawValue();
-    const formData = { ...data, date: new Date().toISOString() };
-    this.invoice.emit(formData);
+
+    this.invoice.emit(data);
   }
 
   loadPatients() {

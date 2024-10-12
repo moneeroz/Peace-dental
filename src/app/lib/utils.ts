@@ -1,5 +1,3 @@
-export const API_URL = 'https://peace-be.onrender.com/api';
-
 export const generatePagination = (
   totalPages: number = 0,
   currentPage: number,

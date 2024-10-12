@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Iinvoice } from '../interfaces/iinvoice';
 import { IinvoiceInfo } from '../interfaces/iinvoice-info';
-import { API_URL } from '../lib/utils';
+import { API_URL } from '../lib/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +12,17 @@ export class InvoiceService {
   private http = inject(HttpClient);
 
   addInvoice(data: IinvoiceInfo) {
-    return this.http.post(`${this.baseUrl}`, data);
+    return this.http.post(`${this.baseUrl}/${data.patientId}`, data);
   }
 
   getInvoice(id: string) {
     return this.http.get<IinvoiceInfo>(`${this.baseUrl}/${id}`);
   }
 
-  getInvoices(params: { page?: number; query: string }) {
-    return this.http.get<Iinvoice[]>(`${this.baseUrl}`, { params: params });
+  getInvoices(params: { page: number; query: string }) {
+    return this.http.get<Iinvoice[]>(`${this.baseUrl}`, {
+      params: { term: params.query, page: params.page },
+    });
   }
 
   updateInvoice(data: IinvoiceInfo) {
@@ -33,7 +35,7 @@ export class InvoiceService {
 
   getTotalPages(query: string) {
     query = query?.trim() || '';
-    return this.http.get<number>(`${this.baseUrl}/pages/count`, {
+    return this.http.get<number>(`${this.baseUrl}/count`, {
       params: { query },
     });
   }

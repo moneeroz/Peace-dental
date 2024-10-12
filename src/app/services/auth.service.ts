@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Iuser } from '../interfaces/iuser';
 import { map, Observable } from 'rxjs';
-import { API_URL } from '../lib/utils';
+import { API_URL, REFRESH_TOKEN_KEY, TOKEN_KEY } from '../lib/constants';
+import { IClaims } from '../interfaces/iclaims';
 
 export interface loginData {
   email: string;
@@ -13,35 +14,15 @@ export interface loginData {
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl: string = `${API_URL}/auth`;
+  private baseUrl: string = `${API_URL}/account`;
   private http = inject(HttpClient);
-
-  // Current user
-  private readonly currentUser = signal<Iuser | null | undefined>(undefined);
-  readonly userSignal = this.currentUser.asReadonly();
-
-  setCurrentUser(user: Iuser | null): void {
-    this.currentUser.set(user);
-  }
-
-  private loginStatus = signal<boolean>(false);
-  readonly isLoggedIn = this.loginStatus.asReadonly();
-
-  setLogin(status: boolean): void {
-    this.loginStatus.set(status);
-  }
 
   // Login
   login(data: loginData): Observable<Iuser> {
     return this.http.post<Iuser>(`${this.baseUrl}/login`, data).pipe(
       map((user) => {
-        this.setCurrentUser(user);
-        this.setLogin(true);
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('refresh_token', user.refreshToken);
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('role', user.role);
-        localStorage.setItem('id', user.id);
+        this.setToken(TOKEN_KEY, user.token);
+        this.setToken(REFRESH_TOKEN_KEY, user.refreshToken);
         return user;
       }),
     );
@@ -50,23 +31,37 @@ export class AuthService {
   // Token verification
   verifyToken$(refreshToken: string): Observable<Iuser> {
     return this.http
-      .post<Iuser>(`${this.baseUrl}/token`, { refreshToken })
+      .post<Iuser>(`${this.baseUrl}/verify-token`, { refreshToken })
       .pipe(
         map((user) => {
-          this.setCurrentUser(user);
+          this.setToken(TOKEN_KEY, user.token);
+          this.setToken(REFRESH_TOKEN_KEY, user.refreshToken);
           return user;
         }),
       );
   }
 
-  // Logout
-  logout(id: string) {
-    return this.http.get(`${this.baseUrl}/logout/${id}`).pipe(
-      map(() => {
-        this.setCurrentUser(null);
-        this.setLogin(false);
-        localStorage.clear();
-      }),
-    );
+  /// Logout
+  logout() {
+    return this.http.get(`${this.baseUrl}/logout`);
+  }
+
+  // Token
+  getToken(key: string) {
+    return localStorage.getItem(key);
+  }
+
+  setToken(key: string, value: string) {
+    localStorage.setItem(key, value);
+  }
+
+  removeToken(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  getClaims(): IClaims {
+    const token = this.getToken(TOKEN_KEY);
+    const claims = JSON.parse(window.atob(token!.split('.')[1]));
+    return claims;
   }
 }

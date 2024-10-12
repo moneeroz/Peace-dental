@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Idoctor } from '../interfaces/idoctor';
-import { API_URL } from '../lib/utils';
+import { API_URL } from '../lib/constants';
 
 @Injectable({
   providedIn: 'root',

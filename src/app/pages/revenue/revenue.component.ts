@@ -3,7 +3,6 @@ import { CardWrapperComponent } from '../../components/revenue/card-wrapper/card
 import { ChartComponent } from '../../components/revenue/chart/chart.component';
 import { LatestInvoicesComponent } from '../../components/overview/latest-invoices/latest-invoices.component';
 import { IRevenuCard } from '../../interfaces/irevenu-card';
-import { OverviewService } from '../../services/overview.service';
 import { RevenueService } from '../../services/revenue.service';
 import { IChartData } from '../../interfaces/ichart-data';
 import { FliterComponent } from '../../components/revenue/fliter/fliter.component';
@@ -32,10 +31,9 @@ import { InvoicesCardSkeleton } from '../../components/skeletons/invoices-card-s
   styleUrl: './revenue.component.scss',
 })
 export class RevenueComponent implements OnInit {
-  overviewService = inject(OverviewService);
   revenueService = inject(RevenueService);
   doctorService = inject(DoctorService);
-  latestInvoices = this.overviewService.getLatestInvoices();
+  latestInvoices = this.revenueService.getLatestInvoices();
   cardData = signal<IRevenuCard | undefined>(undefined);
   chartData = signal<IChartData[]>([]);
   doctors = signal<Idoctor[]>([]);

@@ -2,7 +2,7 @@
   @for (invoice of invoices(); track invoice.id) {
   <div class="main">
     <div>
-      <p class="name">D. {{ invoice.doctor }}</p>
+      <p class="name">D. {{ invoice.doctorName }}</p>
       <p class="reason">{{ invoice.reason }}</p>
     </div>
 
@@ -30,7 +30,7 @@
   <table>
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Doctor</th>
         <th>Reason</th>
         <th>Amount</th>
         <th>Date</th>
@@ -41,7 +41,7 @@
       @for (invoice of invoices(); track invoice.id) {
       <tr>
         <td>
-          {{ invoice.name }}
+          {{ invoice.doctorName }}
         </td>
         <td>
           {{ invoice.reason }}

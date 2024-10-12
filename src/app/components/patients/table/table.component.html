@@ -21,17 +21,17 @@
       </div>
     </div>
     <div class="total">
-      <p>{{ patient.total_invoices }} invoices</p>
+      <p>{{ patient.invoiceCount }} invoices</p>
     </div>
 
     <div class="invoice">
       <div>
         <p>Pending</p>
-        <p class="amount">{{ patient.total_pending | currency }}</p>
+        <p class="amount">{{ patient.totalPending | currency }}</p>
       </div>
       <div>
         <p>Paid</p>
-        <p class="amount">{{ patient.total_paid | currency }}</p>
+        <p class="amount">{{ patient.totalPaid | currency }}</p>
       </div>
     </div>
   </div>
@@ -61,12 +61,12 @@
         <td>
           {{ patient.phone }}
         </td>
-        <td>{{ patient.total_invoices }}</td>
+        <td>{{ patient.invoiceCount }}</td>
         <td>
-          {{ patient.total_paid | currency }}
+          {{ patient.totalPaid | currency }}
         </td>
         <td>
-          {{ patient.total_pending | currency }}
+          {{ patient.totalPending | currency }}
         </td>
         <td>
           <div class="patient-actions">

@@ -92,7 +92,7 @@ export class CalenderComponent implements OnInit {
 
     this.overviewService
       .updateDate({
-        appointmentDate: formatISO(newStart),
+        appointmentDate: newStart,
         id: event.id.toString(),
       })
       .subscribe();
@@ -130,8 +130,8 @@ export class CalenderComponent implements OnInit {
             id: event.id,
             start: toDate(event.appointmentDate),
             end: toDate(addHours(event.appointmentDate, 2)),
-            title: `${event.reason} - ${event.name}`,
-            color: event.doctor == 'Asmaa' ? colors.yellow : colors.blue,
+            title: `${event.reason} - ${event.patientName}`,
+            color: event.doctorName == 'Asmaa' ? colors.yellow : colors.blue,
             draggable: true,
           };
         });

@@ -3,8 +3,8 @@ export interface IappointmentInfo {
   appointmentDate: string;
   patientId?: string;
   doctorId: string;
-  doctor?: string;
+  doctorName?: string;
   reason: string;
-  name?: string;
+  patientName?: string;
   date?: string;
 }

@@ -5,8 +5,8 @@
     <div class="container" [ngClass]="{ border_t: $index !== 0 }">
       <div>
         <div>
-          <p>{{ invoice.name }}</p>
-          <p class="doc">D. {{ invoice.doctor }}</p>
+          <p>{{ invoice.patientName }}</p>
+          <p class="doc">D. {{ invoice.doctorName }}</p>
         </div>
         <p>
           {{ invoice.amount | currency }}

@@ -11,5 +11,5 @@ import { heroCheck, heroClock } from '@ng-icons/heroicons/outline';
   providers: [provideIcons({ heroCheck, heroClock })],
 })
 export class StatusComponent {
-  status = input.required<string>();
+  status = input.required<number>();
 }

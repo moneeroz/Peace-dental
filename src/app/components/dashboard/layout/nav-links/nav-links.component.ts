@@ -1,4 +1,4 @@
-import { Component, effect, inject, Injector, OnInit } from '@angular/core';
+import { Component, inject, Injector } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import {
@@ -26,18 +26,10 @@ import { AuthService } from '../../../../services/auth.service';
     }),
   ],
 })
-export class NavLinksComponent implements OnInit {
+export class NavLinksComponent {
   authService = inject(AuthService);
   injector = inject(Injector);
-  role: string | undefined = 'user';
-  ngOnInit() {
-    effect(
-      () => {
-        this.role = this.authService.userSignal()?.role;
-      },
-      { injector: this.injector },
-    );
-  }
+  role: string = this.authService.getClaims().role;
 
   userLinks = [
     { name: 'Overview', href: '/overview', icon: 'heroHome' },
