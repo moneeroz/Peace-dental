@@ -21,13 +21,8 @@ export class AuthService {
   login(data: loginData): Observable<Iuser> {
     return this.http.post<Iuser>(`${this.baseUrl}/login`, data).pipe(
       map((user) => {
-        this.setCurrentUser(user);
-        this.setLogin(true);
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('refresh_token', user.refreshToken);
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('role', user.role);
-        localStorage.setItem('id', user.id);
+        this.setToken(TOKEN_KEY, user.token);
+        this.setToken(REFRESH_TOKEN_KEY, user.refreshToken);
         return user;
       }),
     );
@@ -46,14 +41,27 @@ export class AuthService {
       );
   }
 
-  // Logout
-  logout(id: string) {
-    return this.http.get(`${this.baseUrl}/logout/${id}`).pipe(
-      map(() => {
-        this.setCurrentUser(null);
-        this.setLogin(false);
-        localStorage.clear();
-      }),
-    );
+  /// Logout
+  logout() {
+    return this.http.get(`${this.baseUrl}/logout`);
+  }
+
+  // Token
+  getToken(key: string) {
+    return localStorage.getItem(key);
+  }
+
+  setToken(key: string, value: string) {
+    localStorage.setItem(key, value);
+  }
+
+  removeToken(key: string) {
+    localStorage.removeItem(key);
+  }
+
+  getClaims(): IClaims {
+    const token = this.getToken(TOKEN_KEY);
+    const claims = JSON.parse(window.atob(token!.split('.')[1]));
+    return claims;
   }
 }
