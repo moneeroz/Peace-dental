@@ -1,0 +1,38 @@
+$blue-500: #3b82f6;
+$blue-600: #2563eb;
+$gray-300: #d1d5db;
+$white: #ffffff;
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+  gap: 1rem;
+  background: $gray-300;
+}
+
+a {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: $blue-600;
+  padding-inline: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $white;
+
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+a:hover {
+  background: $blue-500;
+}

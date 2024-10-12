@@ -16,6 +16,8 @@ import { NewAppointmentComponent } from './pages/appointments/new-appointment/ne
 import { RevenueComponent } from './pages/revenue/revenue.component';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
+import { UnAuthorizedComponent } from './components/common/un-authorized/un-authorized.component';
+import { NotFoundComponent } from './components/common/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,6 +44,8 @@ export const routes: Routes = [
         component: RevenueComponent,
         canActivate: [authGuard],
       },
+      { path: 'unauthorized', component: UnAuthorizedComponent },
     ],
   },
+  { path: '**', component: NotFoundComponent },
 ];
