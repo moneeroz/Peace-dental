@@ -1,9 +1,9 @@
 export interface IinvoiceInfo {
   id?: string;
-  name?: string;
-  doctor?: string;
+  patientName?: string;
+  doctorName?: string;
   patientId?: string;
   amount: string;
   reason: string;
-  status: string;
+  status: number;
 }

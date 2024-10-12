@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Ipatient } from '../interfaces/ipatient';
 import { IpatientInfo } from '../interfaces/ipatient-info';
-import { API_URL } from '../lib/utils';
+import { API_URL } from '../lib/constants';
 
 export interface IpatientInvoices {
   id: string;
-  name: string;
-  doctor: string;
+  patientName: string;
+  doctorName: string;
   amount: number;
   date: string;
   reason: string;
-  status: string;
+  status: number;
 }
 
 @Injectable({
@@ -29,9 +29,12 @@ export class PatientService {
     return this.http.get<IpatientInfo>(`${this.baseUrl}/${id}`);
   }
 
-  getPatients(params: { page?: number; query: string }) {
-    return this.http.get<Ipatient[]>(`${this.baseUrl}`, { params: params });
+  getPatients(params: { page: number; query: string }) {
+    return this.http.get<Ipatient[]>(`${this.baseUrl}`, {
+      params: { term: params.query, page: params.page },
+    });
   }
+
   getAllPatients() {
     return this.http.get<IpatientInfo[]>(`${this.baseUrl}/all`);
   }
@@ -50,7 +53,7 @@ export class PatientService {
 
   getTotalPages(query: string) {
     query = query?.trim() || '';
-    return this.http.get<number>(`${this.baseUrl}/pages/count`, {
+    return this.http.get<number>(`${this.baseUrl}/count`, {
       params: { query },
     });
   }

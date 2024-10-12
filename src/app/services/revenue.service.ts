@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Signal } from '@angular/core';
 import { IRevenuCard } from '../interfaces/irevenu-card';
 import { IChartData } from '../interfaces/ichart-data';
-import { API_URL } from '../lib/utils';
+import { API_URL } from '../lib/constants';
+import { ILatestInvoice } from '../interfaces/ilatest-invoice';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +32,16 @@ export class RevenueService {
 
   // chart data
   GetChartData(params?: { year: number | string }) {
-    return this.http.get<IChartData[]>(`${this.baseUrl}/year`, { params });
+    return this.http.get<IChartData[]>(`${this.baseUrl}/chart`, { params });
+  }
+
+  // latest invoices
+  private latestInvoices$ = this.http.get<ILatestInvoice[]>(
+    `${this.baseUrl}/invoices`,
+  );
+  private readonly latestInvoices = toSignal(this.latestInvoices$);
+
+  getLatestInvoices(): Signal<ILatestInvoice[] | undefined> {
+    return this.latestInvoices;
   }
 }

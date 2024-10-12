@@ -3,7 +3,7 @@ export interface Iinvoice {
   amount: number;
   date: string;
   reason: string;
-  name: string;
-  status: string;
-  doctor: string;
+  patientName: string;
+  status: number;
+  doctorName: string;
 }
