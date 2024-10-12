@@ -107,6 +107,6 @@
 
   <div class="actions">
     <a routerLink="/invoices">Cancel</a>
-    <Button type="submit">Create</Button>
+    <Button type="submit" [disabled]="invoiceForm.invalid">Create</Button>
   </div>
 </form>

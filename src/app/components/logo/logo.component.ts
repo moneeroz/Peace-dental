@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage, provideCloudinaryLoader } from '@angular/common';
 
 @Component({
   selector: 'app-logo',
@@ -7,5 +7,6 @@ import { NgOptimizedImage } from '@angular/common';
   imports: [NgOptimizedImage],
   templateUrl: './logo.component.html',
   styleUrl: './logo.component.scss',
+  providers: [provideCloudinaryLoader('https://res.cloudinary.com/dsity4tvx/')],
 })
 export class LogoComponent {}

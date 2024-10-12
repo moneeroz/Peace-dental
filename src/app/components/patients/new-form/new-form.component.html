@@ -41,6 +41,6 @@
 
   <div class="actions">
     <a routerLink="/patients">Cancel</a>
-    <Button type="submit">Create</Button>
+    <Button type="submit" [disabled]="patientForm.invalid">Create</Button>
   </div>
 </form>

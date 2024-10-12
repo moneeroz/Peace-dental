@@ -22,15 +22,16 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 export function initiliazeApp(authService: AuthService, router: Router) {
   const refresh_token = localStorage.getItem('refresh_token');
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
 
   return () => {
     if (!refresh_token) {
-      authService.setCurrentUser(null);
+      if (!isLoggedIn) {
+        return;
+      }
+      localStorage.clear();
       authService.setLogin(false);
-      localStorage.removeItem('refresh_token');
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('role');
-      localStorage.removeItem('token');
+      authService.setCurrentUser(null);
       router.navigateByUrl('/login');
       return;
     }
@@ -50,10 +51,7 @@ export function initiliazeApp(authService: AuthService, router: Router) {
           console.error(err);
           authService.setCurrentUser(null);
           authService.setLogin(false);
-          localStorage.removeItem('refresh_token');
-          localStorage.removeItem('isLoggedIn');
-          localStorage.removeItem('role');
-          localStorage.removeItem('token');
+          localStorage.clear();
           router.navigateByUrl('/login');
         },
       });
