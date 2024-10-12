@@ -12,13 +12,13 @@
 />
 <app-card
   title="Paid"
-  [value]="data()?.totalPaidInvoices"
+  [value]="data()?.invoicesPaidToday"
   icon="heroBanknotes"
   type="currency"
 />
 <app-card
   title="Pending"
-  [value]="data()?.totalPendingInvoices"
+  [value]="data()?.invoicesPendingToday"
   icon="heroClock"
   type="currency"
 />

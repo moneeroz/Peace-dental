@@ -38,7 +38,7 @@ export class EditFormComponent implements OnInit {
   invoiceForm = this.fb.group({
     reason: this.fb.control(''),
     amount: this.fb.control(''),
-    status: this.fb.control(''),
+    status: this.fb.control(0),
   });
 
   ngOnInit(): void {

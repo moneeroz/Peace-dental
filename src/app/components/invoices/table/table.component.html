@@ -3,7 +3,7 @@
   <div class="card">
     <div class="invoice">
       <div class="name">
-        <p>{{ invoice.name }}</p>
+        <p>{{ invoice.patientName }}</p>
         <p class="reason">{{ invoice.reason }}</p>
       </div>
 
@@ -13,7 +13,7 @@
     </div>
 
     <div class="info">
-      <div class="bold">D. {{ invoice.doctor }}</div>
+      <div class="bold">D. {{ invoice.doctorName }}</div>
 
       <div>
         <p class="bold">{{ invoice.amount | currency }}</p>
@@ -63,7 +63,7 @@
       @for (invoice of invoices(); track invoice.id) {
       <tr>
         <td>
-          {{ invoice.name }}
+          {{ invoice.patientName }}
         </td>
         <td>
           {{ invoice.reason }}
@@ -76,7 +76,7 @@
           <app-status [status]="invoice.status" />
         </td>
         <td>
-          {{ invoice.doctor }}
+          {{ invoice.doctorName }}
         </td>
         <td>
           <div class="invoice-actions">

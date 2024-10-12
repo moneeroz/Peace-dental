@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroPower } from '@ng-icons/heroicons/outline';
 import { AuthService } from '../../../../services/auth.service';
+import { REFRESH_TOKEN_KEY, TOKEN_KEY } from '../../../../lib/constants';
 
 @Component({
   selector: 'app-sidenav',
@@ -19,20 +20,15 @@ export class SidenavComponent {
   router = inject(Router);
 
   logOut() {
-    const id = localStorage.getItem('id');
+    this.authService.logout().subscribe({
+      next: () => {},
+      error: (err) => {
+        console.error(err);
+      },
+    });
 
-    if (id) {
-      this.authService.logout(id).subscribe({
-        next: () => {
-          this.router.navigateByUrl('/login');
-        },
-        error: (err) => {
-          console.error(err);
-        },
-      });
-    } else {
-      localStorage.clear();
-      this.router.navigateByUrl('/login');
-    }
+    this.authService.removeToken(TOKEN_KEY);
+    this.authService.removeToken(REFRESH_TOKEN_KEY);
+    this.router.navigateByUrl('/home');
   }
 }

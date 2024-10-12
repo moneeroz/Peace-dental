@@ -3,17 +3,17 @@
   <div class="card">
     <div class="appointment">
       <div class="name">
-        <p>{{ appointment.name }}</p>
-        <p class="phone">{{ appointment.phone }}</p>
+        <p>{{ appointment.patientName }}</p>
+        <p class="phone">{{ appointment.patientName }}</p>
       </div>
 
       <div>
-        {{ appointment.date | date }}
+        {{ appointment.appointmentDate | date }}
       </div>
     </div>
 
     <div class="info">
-      <div class="bold">D. {{ appointment.doctor }}</div>
+      <div class="bold">D. {{ appointment.doctorName }}</div>
 
       <div>
         <p>{{ appointment.reason }}</p>
@@ -50,19 +50,19 @@
       @for (appointment of appointments(); track appointment.id) {
       <tr>
         <td>
-          {{ appointment.name }}
+          {{ appointment.patientName }}
         </td>
         <td>
-          {{ appointment.phone }}
+          {{ appointment.phoneNumber }}
         </td>
         <td>
-          {{ appointment.date | date }}
+          {{ appointment.appointmentDate | date }}
         </td>
         <td>
           {{ appointment.reason }}
         </td>
         <td>
-          {{ appointment.doctor }}
+          {{ appointment.doctorName }}
         </td>
         <td>
           <div class="appointment-actions">

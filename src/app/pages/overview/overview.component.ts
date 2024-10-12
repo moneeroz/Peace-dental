@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, Signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardWrapperComponent } from '../../components/overview/card-wrapper/card-wrapper.component';
 import { LatestAppointmentsComponent } from '../../components/overview/latest-appointments/latest-appointments.component';
 import { LatestInvoicesComponent } from '../../components/overview/latest-invoices/latest-invoices.component';
@@ -22,6 +22,4 @@ import { CardWrapperSkeleton } from '../../components/skeletons/card-wrapper/car
 export class OverviewComponent {
   overviewService = inject(OverviewService);
   data = this.overviewService.getCardData();
-  latestAppointments = this.overviewService.getLatestAppointments();
-  latestInvoices = this.overviewService.getLatestInvoices();
 }

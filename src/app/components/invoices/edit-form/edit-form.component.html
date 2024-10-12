@@ -2,11 +2,11 @@
   <div class="title">
     <div>
       <span>Patient</span>
-      <p class="name">{{ invoice()?.name }}</p>
+      <p class="name">{{ invoice()?.patientName }}</p>
     </div>
     <div>
       <span>Doctor</span>
-      <p>D. {{ invoice()?.doctor }}</p>
+      <p>D. {{ invoice()?.doctorName }}</p>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
         <div>
           <input
             formControlName="status"
-            value="pending"
+            [value]="0"
             class="status-input"
             type="radio"
           />
@@ -44,7 +44,7 @@
         <div>
           <input
             formControlName="status"
-            value="paid"
+            [value]="1"
             class="status-input"
             type="radio"
           />
