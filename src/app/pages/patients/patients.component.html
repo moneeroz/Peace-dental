@@ -8,13 +8,13 @@
     <app-add-button text="Add Patient" link="/patients/new" />
   </div>
 
-  @defer () {
+  @defer (when patients().length > 0) {
   <app-table
     [patients]="patients()"
     (onDeletePatient)="deletePatient($event)"
   />
 
-  } @placeholder (minimum 600ms) {
+  } @placeholder (minimum 500ms) {
   <skeleton-patients-table />
   }
 
@@ -24,8 +24,6 @@
     <app-pagination (pageNumber)="navigateToPage($event)" />
     } @placeholder (minimum 300ms) {
     <div>...</div>
-    } @loading {
-    <div>loading...</div>
     }
   </div>
 </main>

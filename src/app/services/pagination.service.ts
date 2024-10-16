@@ -14,7 +14,7 @@ export class PaginationService {
   }
 
   // Total pages
-  private readonly totalPagesSignal = signal<number>(2);
+  private readonly totalPagesSignal = signal<number>(1);
   readonly totalPages = this.totalPagesSignal.asReadonly();
 
   setTotalPages(pages: number): void {
