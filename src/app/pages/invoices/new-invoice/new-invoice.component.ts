@@ -7,6 +7,7 @@ import {
   Breadcrumb,
   BreadcrumbsComponent,
 } from '../../../components/common/breadcrumbs/breadcrumbs.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-new-invoice',
@@ -18,6 +19,8 @@ import {
 export class NewInvoiceComponent {
   router = inject(Router);
   invoiceService = inject(InvoiceService);
+  toast = inject(HotToastService);
+
   breadcrumbs: Breadcrumb[] = [
     { label: 'Invoices', url: '/invoices' },
     {
@@ -28,9 +31,18 @@ export class NewInvoiceComponent {
   ];
 
   onSubmit(invoice: IinvoiceInfo) {
-    this.invoiceService.addInvoice(invoice).subscribe({
-      next: () => this.router.navigateByUrl('/invoices'),
-      error: (err) => console.log(err),
-    });
+    this.invoiceService
+      .addInvoice(invoice)
+      .pipe(
+        this.toast.observe({
+          loading: 'Creating invoice...',
+          success: 'Invoice created',
+          error: 'Something went wrong',
+        }),
+      )
+      .subscribe({
+        next: () => this.router.navigateByUrl('/invoices'),
+        error: (err) => console.log(err),
+      });
   }
 }

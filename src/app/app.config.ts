@@ -12,6 +12,7 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 import { refreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { provideHotToastConfig } from '@ngneat/hot-toast';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,5 +28,6 @@ export const appConfig: ApplicationConfig = {
         useFactory: adapterFactory,
       }),
     ),
+    provideHotToastConfig(),
   ],
 };

@@ -7,6 +7,7 @@ import {
   Breadcrumb,
   BreadcrumbsComponent,
 } from '../../../components/common/breadcrumbs/breadcrumbs.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-new-patient',
@@ -18,6 +19,7 @@ import {
 export class NewPatientComponent {
   router = inject(Router);
   patientService = inject(PatientService);
+  toast = inject(HotToastService);
 
   breadcrumbs: Breadcrumb[] = [
     { label: 'Patients', url: '/patients' },
@@ -29,9 +31,18 @@ export class NewPatientComponent {
   ];
 
   onSubmit(patient: IpatientInfo) {
-    this.patientService.addPatient(patient).subscribe({
-      next: () => this.router.navigateByUrl('/patients'),
-      error: (err) => console.log(err),
-    });
+    this.patientService
+      .addPatient(patient)
+      .pipe(
+        this.toast.observe({
+          loading: 'Creating patient...',
+          success: 'Patient created',
+          error: 'Something went wrong',
+        }),
+      )
+      .subscribe({
+        next: () => this.router.navigateByUrl('/patients'),
+        error: (err) => console.log(err),
+      });
   }
 }

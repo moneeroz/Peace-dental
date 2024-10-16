@@ -10,6 +10,7 @@ import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUser, heroPhone } from '@ng-icons/heroicons/outline';
 import { CommonModule } from '@angular/common';
 import { PatientService } from '../../../services/patient.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-edit-form',
@@ -26,6 +27,7 @@ export class EditFormComponent implements OnInit {
   router = inject(Router);
   fb = inject(NonNullableFormBuilder);
   patientService = inject(PatientService);
+  toast = inject(HotToastService);
 
   patientForm = this.fb.group({
     name: this.fb.control('', {
@@ -55,6 +57,13 @@ export class EditFormComponent implements OnInit {
     const { name, phone } = this.patientForm.getRawValue();
     this.patientService
       .updatePatient({ id: this.id(), name, phone })
+      .pipe(
+        this.toast.observe({
+          loading: 'Updating patient...',
+          success: 'Patient updated',
+          error: 'Something went wrong',
+        }),
+      )
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/patients');

@@ -11,6 +11,7 @@ import {
   heroCheck,
   heroClock,
 } from '@ng-icons/heroicons/outline';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-edit-form',
@@ -33,6 +34,8 @@ export class EditFormComponent implements OnInit {
   invoice = signal<IinvoiceInfo | null>(null);
   router = inject(Router);
   fb = inject(NonNullableFormBuilder);
+  toast = inject(HotToastService);
+
   invoiceService = inject(InvoiceService);
 
   invoiceForm = this.fb.group({
@@ -61,6 +64,13 @@ export class EditFormComponent implements OnInit {
     const { reason, amount, status } = this.invoiceForm.getRawValue();
     this.invoiceService
       .updateInvoice({ id: this.id(), reason, amount, status })
+      .pipe(
+        this.toast.observe({
+          loading: 'Updating invoice...',
+          success: 'Invoice updated',
+          error: 'Something went wrong',
+        }),
+      )
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/invoices');

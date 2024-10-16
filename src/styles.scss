@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use "@ngneat/hot-toast/src/styles/styles.scss";
+
 @import "../node_modules/@ng-select/ng-select/themes/default.theme.css";
 @import "../node_modules/flatpickr/dist/flatpickr.min.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
@@ -147,4 +149,9 @@ ngx-flatpickr-wrapper {
 small {
   color: $red-500;
   font-size: 0.75rem;
+}
+
+// form box shadow
+form {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }

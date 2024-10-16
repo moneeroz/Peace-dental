@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { REFRESH_TOKEN_KEY, TOKEN_KEY } from '../lib/constants';
 
 export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
@@ -26,7 +26,16 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
               authService.removeToken(TOKEN_KEY);
               authService.removeToken(REFRESH_TOKEN_KEY);
               router.navigateByUrl('/login');
-              return of(err);
+              return throwError(
+                () =>
+                  new HttpErrorResponse({
+                    error: err.message,
+                    status: err.status,
+                    statusText: err.statusText,
+                    headers: err.headers,
+                    url: err.url!,
+                  }),
+              ); // Rethrow the original error
             }
 
             authService.setToken(TOKEN_KEY, user.token);
@@ -43,7 +52,7 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
             return next(clonedReq);
           }),
           catchError((verifyErr) => {
-            return of(verifyErr);
+            return throwError(() => new Error(verifyErr));
           }),
         );
       }
@@ -53,7 +62,16 @@ export const refreshTokenInterceptor: HttpInterceptorFn = (req, next) => {
       router.navigateByUrl('/login');
     }
 
-    return of(err);
+    return throwError(
+      () =>
+        new HttpErrorResponse({
+          error: err.message,
+          status: err.status,
+          statusText: err.statusText,
+          headers: err.headers,
+          url: err.url!,
+        }),
+    );
   };
 
   return next(req).pipe(

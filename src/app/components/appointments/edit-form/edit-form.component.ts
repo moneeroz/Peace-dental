@@ -17,6 +17,7 @@ import {
   heroUserPlus,
   heroCalendar,
 } from '@ng-icons/heroicons/outline';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-edit-form',
@@ -43,6 +44,8 @@ export class EditFormComponent implements OnInit {
   appointment = signal<IappointmentInfo | null>(null);
   doctors = signal<Idoctor[]>([]);
   router = inject(Router);
+  toast = inject(HotToastService);
+
   fb = inject(NonNullableFormBuilder);
 
   appointmentService = inject(AppointmentService);
@@ -96,6 +99,13 @@ export class EditFormComponent implements OnInit {
 
     this.appointmentService
       .updateAppointment({ ...data, appointmentDate }, this.id())
+      .pipe(
+        this.toast.observe({
+          loading: 'Updating appointment...',
+          success: 'Appointment updated',
+          error: 'Something went wrong',
+        }),
+      )
       .subscribe({
         next: () => {
           this.router.navigateByUrl('/appointments');
