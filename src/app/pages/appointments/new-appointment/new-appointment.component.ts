@@ -7,6 +7,7 @@ import {
   Breadcrumb,
   BreadcrumbsComponent,
 } from '../../../components/common/breadcrumbs/breadcrumbs.component';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-new-appointment',
@@ -18,6 +19,8 @@ import {
 export class NewAppointmentComponent {
   router = inject(Router);
   appointmentService = inject(AppointmentService);
+  toast = inject(HotToastService);
+
   breadcrumbs: Breadcrumb[] = [
     { label: 'Appointments', url: '/appointments' },
     {
@@ -28,9 +31,18 @@ export class NewAppointmentComponent {
   ];
 
   onSubmit(appointment: IappointmentInfo) {
-    this.appointmentService.addAppointment(appointment).subscribe({
-      next: () => this.router.navigateByUrl('/appointments'),
-      error: (err) => console.log(err),
-    });
+    this.appointmentService
+      .addAppointment(appointment)
+      .pipe(
+        this.toast.observe({
+          loading: 'Creating appointment...',
+          success: 'Appointment created',
+          error: 'Something went wrong',
+        }),
+      )
+      .subscribe({
+        next: () => this.router.navigateByUrl('/appointments'),
+        error: (err) => console.log(err),
+      });
   }
 }
