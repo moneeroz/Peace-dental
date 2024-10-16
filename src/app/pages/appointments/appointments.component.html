@@ -9,12 +9,12 @@
     <app-add-button text="Add Appointment" link="/appointments/new" />
   </div>
 
-  @defer() {
+  @defer(when appointments().length > 0) {
   <app-table
     [appointments]="appointments()"
     (onDeleteAppointment)="deleteAppointment($event)"
   />
-  } @placeholder (minimum 600ms) {
+  } @placeholder (minimum 500ms) {
   <skeleton-appointment-table />
   }
 
@@ -24,8 +24,6 @@
     <app-pagination (pageNumber)="navigateToPage($event)" />
     } @placeholder (minimum 300ms) {
     <div>...</div>
-    } @loading {
-    <div>loading...</div>
     }
   </div>
 </main>

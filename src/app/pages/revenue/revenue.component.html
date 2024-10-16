@@ -17,19 +17,20 @@
   </div>
 
   <div>
-    @defer () {
+    @defer (when cardData() != undefined) {
     <app-card-wrapper [data]="cardData()" />
-    } @placeholder (minimum 600ms) {
+    } @placeholder (minimum 500ms) {
     <skeleton-card-wrapper />
     }
   </div>
 
   <div class="chart">
-    @defer () {
+    @defer (when chartData().length > 0) {
     <app-chart [data]="chartData()" />
-    } @placeholder (minimum 600ms) {
+    } @placeholder (minimum 500ms) {
     <skeleton-chart />
-    } @defer () {
+
+    } @defer (when latestInvoices() != undefined) {
     <app-latest-invoices [latestInvoices]="latestInvoices()" />
     } @placeholder (minimum 500ms) {
     <skeleton-invoices-card />

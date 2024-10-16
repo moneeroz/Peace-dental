@@ -1,8 +1,8 @@
 <h1>Overview</h1>
-@defer {
+@defer(when data() != undefined) {
 
 <app-card-wrapper [data]="data()" />
-} @placeholder (minimum 600ms) {
+} @placeholder (minimum 500ms) {
 
 <skeleton-card-wrapper />
 }
