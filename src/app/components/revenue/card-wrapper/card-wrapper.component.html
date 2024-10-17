@@ -1,25 +1,25 @@
 <div>
   <app-card
     title="Patients"
-    [value]="data()?.numberOfPatients"
+    [value]="patientCount()"
     icon="heroUserGroup"
     type="count"
   />
   <app-card
     title="Invoices"
-    [value]="data()?.numberOfInvoices"
+    [value]="invoiceStats()?.count"
     icon="heroInbox"
     type="count"
   />
   <app-card
     title="Paid"
-    [value]="data()?.totalPaid"
+    [value]="invoiceStats()?.paid"
     icon="heroBanknotes"
     type="currency"
   />
   <app-card
     title="Pending"
-    [value]="data()?.totalPending"
+    [value]="invoiceStats()?.pending"
     icon="heroClock"
     type="currency"
   />

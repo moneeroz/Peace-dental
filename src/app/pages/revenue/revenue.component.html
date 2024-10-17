@@ -17,8 +17,11 @@
   </div>
 
   <div>
-    @defer (when cardData() != undefined) {
-    <app-card-wrapper [data]="cardData()" />
+    @defer (when invoiceStats() != undefined) {
+    <app-card-wrapper
+      [invoiceStats]="invoiceStats()"
+      [patientCount]="patientCount()"
+    />
     } @placeholder (minimum 500ms) {
     <skeleton-card-wrapper />
     }

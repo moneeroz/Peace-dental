@@ -2,7 +2,6 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { CardWrapperComponent } from '../../components/revenue/card-wrapper/card-wrapper.component';
 import { ChartComponent } from '../../components/revenue/chart/chart.component';
 import { LatestInvoicesComponent } from '../../components/overview/latest-invoices/latest-invoices.component';
-import { IRevenuCard } from '../../interfaces/irevenu-card';
 import { RevenueService } from '../../services/revenue.service';
 import { IChartData } from '../../interfaces/ichart-data';
 import { FliterComponent } from '../../components/revenue/fliter/fliter.component';
@@ -13,6 +12,7 @@ import { SearchComponent } from '../../components/revenue/search/search.componen
 import { CardWrapperSkeleton } from '../../components/skeletons/card-wrapper/card-wrapper.component';
 import { ChartSkeleton } from '../../components/skeletons/chart-skeleton/chart-skeleton.component';
 import { InvoicesCardSkeleton } from '../../components/skeletons/invoices-card-skeleton/invoices-card-skeleton.component';
+import { IinvoiceStats } from '../../interfaces/iinvoicestats';
 
 @Component({
   selector: 'app-revenue',
@@ -34,7 +34,8 @@ export class RevenueComponent implements OnInit {
   revenueService = inject(RevenueService);
   doctorService = inject(DoctorService);
   latestInvoices = this.revenueService.getLatestInvoices();
-  cardData = signal<IRevenuCard | undefined>(undefined);
+  invoiceStats = signal<IinvoiceStats | undefined>(undefined);
+  patientCount = signal<number | undefined>(undefined);
   chartData = signal<IChartData[]>([]);
   doctors = signal<Idoctor[]>([]);
   month = signal<number | string | null>('');
@@ -44,18 +45,34 @@ export class RevenueComponent implements OnInit {
   months = months;
 
   ngOnInit(): void {
-    this.loadCardData();
+    this.loadInvoiceStats();
+    this.loadPatientCount();
     this.loadChartData();
     this.loadDoctors();
   }
 
-  loadCardData(data?: { month?: number; year?: number; doctorId?: string }) {
-    this.revenueService.getCardData(data).subscribe({
+  loadInvoiceStats(data?: {
+    month?: number;
+    year?: number;
+    doctorId?: string;
+  }) {
+    this.revenueService.getInvoiceStats(data).subscribe({
       next: (data) => {
-        this.cardData.set(data);
+        this.invoiceStats.set(data);
       },
       error: (error) => {
-        console.error('Error loading card data', error);
+        console.error('Error loading data', error);
+      },
+    });
+  }
+
+  loadPatientCount(data?: { year: number }) {
+    this.revenueService.getPatientCount(data).subscribe({
+      next: (data) => {
+        this.patientCount.set(data);
+      },
+      error: (error) => {
+        console.error('Error loading patient count', error);
       },
     });
   }
@@ -84,7 +101,7 @@ export class RevenueComponent implements OnInit {
 
   onMonthChange(month: number | string | null) {
     this.month.set(month);
-    this.loadCardData({
+    this.loadInvoiceStats({
       month: Number(month),
       year: Number(this.year()),
       doctorId: String(this.doctorId()),
@@ -93,17 +110,19 @@ export class RevenueComponent implements OnInit {
 
   onYearChange(year: number | string | null) {
     this.year.set(year);
-    this.loadCardData({
+
+    this.loadInvoiceStats({
       year: Number(year),
       month: Number(this.month()),
       doctorId: String(this.doctorId()),
     });
+    this.loadPatientCount({ year: Number(year) });
     this.loadChartData({ year: Number(year) });
   }
 
   onDoctorChange(doctorId: number | string | null) {
     this.doctorId.set(doctorId);
-    this.loadCardData({
+    this.loadInvoiceStats({
       doctorId: String(doctorId),
       year: Number(this.year()),
       month: Number(this.month()),

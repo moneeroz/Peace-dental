@@ -1,7 +1,10 @@
-<h1>Overview</h1>
-@defer(when data() != undefined) {
+<h1>Today's Summary</h1>
+@defer(when invoiceStats() != undefined) {
 
-<app-card-wrapper [data]="data()" />
+<app-card-wrapper
+  [invoiceStats]="invoiceStats()"
+  [appointmentCount]="appointmentCount()"
+/>
 } @placeholder (minimum 500ms) {
 
 <skeleton-card-wrapper />

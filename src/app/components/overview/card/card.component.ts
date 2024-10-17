@@ -5,7 +5,6 @@ import {
   heroBanknotes,
   heroClock,
   heroCalendarDays,
-  heroCalendar,
   heroUserGroup,
   heroInbox,
 } from '@ng-icons/heroicons/outline';
@@ -20,7 +19,6 @@ import {
       heroBanknotes,
       heroClock,
       heroCalendarDays,
-      heroCalendar,
       heroUserGroup,
       heroInbox,
     }),
