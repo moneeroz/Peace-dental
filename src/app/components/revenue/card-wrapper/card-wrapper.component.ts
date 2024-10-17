@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { IRevenuCard } from '../../../interfaces/irevenu-card';
 import { CardComponent } from '../../overview/card/card.component';
+import { IinvoiceStats } from '../../../interfaces/iinvoicestats';
 
 @Component({
   selector: 'app-card-wrapper',
@@ -10,5 +10,6 @@ import { CardComponent } from '../../overview/card/card.component';
   styleUrl: './card-wrapper.component.scss',
 })
 export class CardWrapperComponent {
-  data = input.required<IRevenuCard | undefined>();
+  invoiceStats = input.required<IinvoiceStats | undefined>();
+  patientCount = input.required<number | undefined>();
 }

@@ -8,17 +8,17 @@
       </div>
 
       <div>
+        <p>{{ invoice.date | date }}</p>
+        <p class="bold">{{ invoice.amount | currency }}</p>
+      </div>
+
+      <div>
         <app-status [status]="invoice.status" />
       </div>
     </div>
 
     <div class="info">
       <div class="bold">D. {{ invoice.doctorName }}</div>
-
-      <div>
-        <p class="bold">{{ invoice.amount | currency }}</p>
-        <p>{{ invoice.date | date }}</p>
-      </div>
 
       <div class="invoice-actions">
         <a routerLink="{{ invoice.id }}/edit" class="action-btn">
