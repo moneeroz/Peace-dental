@@ -2,22 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/dashboard/layout/layout.component';
-import { OverviewComponent } from './pages/overview/overview.component';
-import { PatientsComponent } from './pages/patients/patients.component';
-import { PatientComponent } from './pages/patients/patient/patient.component';
-import { EditPatientComponent } from './pages/patients/edit-patient/edit-patient.component';
-import { NewPatientComponent } from './pages/patients/new-patient/new-patient.component';
-import { InvoicesComponent } from './pages/invoices/invoices.component';
-import { EditInvoiceComponent } from './pages/invoices/edit-invoice/edit-invoice.component';
-import { NewInvoiceComponent } from './pages/invoices/new-invoice/new-invoice.component';
-import { AppointmentsComponent } from './pages/appointments/appointments.component';
-import { EditAppointmentComponent } from './pages/appointments/edit-appointment/edit-appointment.component';
-import { NewAppointmentComponent } from './pages/appointments/new-appointment/new-appointment.component';
-import { RevenueComponent } from './pages/revenue/revenue.component';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
-import { UnAuthorizedComponent } from './components/common/un-authorized/un-authorized.component';
-import { NotFoundComponent } from './components/common/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,24 +14,119 @@ export const routes: Routes = [
     component: LayoutComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'overview', component: OverviewComponent },
-      { path: 'patients', component: PatientsComponent },
-      { path: 'patients/new', component: NewPatientComponent },
-      { path: 'patients/:id', component: PatientComponent },
-      { path: 'patients/:id/edit', component: EditPatientComponent },
-      { path: 'invoices', component: InvoicesComponent },
-      { path: 'invoices/:id/edit', component: EditInvoiceComponent },
-      { path: 'invoices/new', component: NewInvoiceComponent },
-      { path: 'appointments', component: AppointmentsComponent },
-      { path: 'appointments/:id/edit', component: EditAppointmentComponent },
-      { path: 'appointments/new', component: NewAppointmentComponent },
+      {
+        path: 'overview',
+        title: 'Overview',
+        loadComponent: () =>
+          import('./pages/overview/overview.component').then(
+            (m) => m.OverviewComponent,
+          ),
+      },
+      {
+        path: 'patients',
+        title: 'Patients',
+        loadComponent: () =>
+          import('./pages/patients/patients.component').then(
+            (m) => m.PatientsComponent,
+          ),
+      },
+      {
+        path: 'patients/new',
+        title: 'New Patient',
+        loadComponent: () =>
+          import('./pages/patients/new-patient/new-patient.component').then(
+            (m) => m.NewPatientComponent,
+          ),
+      },
+      {
+        path: 'patients/:id',
+        title: 'Patient',
+        loadComponent: () =>
+          import('./pages/patients/patient/patient.component').then(
+            (m) => m.PatientComponent,
+          ),
+      },
+      {
+        path: 'patients/:id/edit',
+        title: 'Edit Patient',
+        loadComponent: () =>
+          import('./pages/patients/edit-patient/edit-patient.component').then(
+            (m) => m.EditPatientComponent,
+          ),
+      },
+      {
+        path: 'invoices',
+        title: 'Invoices',
+        loadComponent: () =>
+          import('./pages/invoices/invoices.component').then(
+            (m) => m.InvoicesComponent,
+          ),
+      },
+      {
+        path: 'invoices/:id/edit',
+        title: 'Edit Invoice',
+        loadComponent: () =>
+          import('./pages/invoices/edit-invoice/edit-invoice.component').then(
+            (m) => m.EditInvoiceComponent,
+          ),
+      },
+      {
+        path: 'invoices/new',
+        title: 'New Invoice',
+        loadComponent: () =>
+          import('./pages/invoices/new-invoice/new-invoice.component').then(
+            (m) => m.NewInvoiceComponent,
+          ),
+      },
+      {
+        path: 'appointments',
+        title: 'Appointments',
+        loadComponent: () =>
+          import('./pages/appointments/appointments.component').then(
+            (m) => m.AppointmentsComponent,
+          ),
+      },
+      {
+        path: 'appointments/:id/edit',
+        title: 'Edit Appointment',
+        loadComponent: () =>
+          import(
+            './pages/appointments/edit-appointment/edit-appointment.component'
+          ).then((m) => m.EditAppointmentComponent),
+      },
+      {
+        path: 'appointments/new',
+        title: 'New Appointment',
+        loadComponent: () =>
+          import(
+            './pages/appointments/new-appointment/new-appointment.component'
+          ).then((m) => m.NewAppointmentComponent),
+      },
       {
         path: 'revenue',
-        component: RevenueComponent,
+        title: 'Revenue',
         canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/revenue/revenue.component').then(
+            (m) => m.RevenueComponent,
+          ),
       },
-      { path: 'unauthorized', component: UnAuthorizedComponent },
+      {
+        path: 'unauthorized',
+        title: 'Unauthorized Access',
+        loadComponent: () =>
+          import(
+            './components/common/un-authorized/un-authorized.component'
+          ).then((m) => m.UnAuthorizedComponent),
+      },
     ],
   },
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '**',
+    title: 'Page Not Found',
+    loadComponent: () =>
+      import('./components/common/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent,
+      ),
+  },
 ];
