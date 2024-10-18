@@ -30,6 +30,21 @@ $white: #ffffff;
   align-items: center;
   border-bottom: $gray-200 solid 1px;
   padding-bottom: 1rem;
+
+  .amount-date {
+    div {
+      height: 1.5rem;
+      width: 7rem;
+      border-radius: 9999px;
+      background: $gray-100;
+    }
+
+    & > div:last-of-type {
+      margin-top: 0.25rem;
+      width: 6rem;
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 .name {
@@ -61,20 +76,6 @@ $white: #ffffff;
     width: 6rem;
     border-radius: 9999px;
     background: $gray-100;
-  }
-
-  .amount-date {
-    div {
-      height: 1.5rem;
-      width: 7rem;
-      border-radius: 9999px;
-      background: $gray-100;
-    }
-
-    & > div:first-of-type {
-      width: 6rem;
-      margin-bottom: 0.5rem;
-    }
   }
 }
 
